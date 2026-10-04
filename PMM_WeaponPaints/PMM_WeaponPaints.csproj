@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AssemblyName>PMM_WeaponPaints</AssemblyName>
+        <RootNamespace>PMM_WeaponPaints</RootNamespace>
+        <Product>PanoramaMenuManager_WeaponPaints</Product>
+        <WarningLevel>0</WarningLevel>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CounterStrikeSharp.API" Version="1.0.376"/>
+        <PackageReference Include="MySqlConnector" Version="2.6.2"/>
+        <ProjectReference Include="..\MenuManagerApi\MenuManagerApi.csproj">
+            <Private>false</Private>
+        </ProjectReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="panorama\**\*.*" CopyToOutputDirectory="PreserveNewest"/>
+        <None Update="icons.json" CopyToOutputDirectory="PreserveNewest"/>
+    </ItemGroup>
+
+</Project>

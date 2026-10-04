@@ -1,0 +1,324 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/wp.vcss_c" />
+	</styles>
+	<Panel class="wp-screen">
+		<Panel id="wp-root" class="wp-root wp-hidden view-home cat-loadout side-p0">
+			<Panel class="wp-top">
+				<Panel class="wp-heading">
+					<Label class="wp-brand stratum-medium-tf" text="PMM | Weapon Skins" />
+					<Label id="wp-title" class="wp-title stratum-bold-tf" text="{s:wp_title}" />
+					<Label id="wp-crumb" class="wp-crumb stratum-medium-tf" text="{s:wp_crumb}" />
+				</Panel>
+				<Panel class="wp-tools">
+					<Button id="wp-back" class="wp-back">
+						<Label class="stratum-medium-tf" text="‹   BACK" />
+					</Button>
+					<Button id="wp-close" class="wp-x">
+						<Label text="×" />
+					</Button>
+				</Panel>
+			</Panel>
+			<Panel class="wp-body">
+				<Panel class="wp-rail">
+				<Panel class="wp-side">
+				<Button id="wp-cat-loadout" class="wp-cat side-p0">
+					<Panel class="wp-swatch wp-swatch-loadout" />
+					<Panel class="wp-cat-text">
+						<Label class="wp-cat-name stratum-bold-tf" text="LOADOUT" />
+						<Label class="wp-cat-sub stratum-medium-tf" text="Everything you wear" />
+					</Panel>
+				</Button>
+				<Button id="wp-cat-knife" class="wp-cat side-p0">
+					<Panel id="wp-sw-knife" class="wp-swatch wp-swatch-knife" />
+					<Panel class="wp-cat-text">
+						<Label class="wp-cat-name stratum-bold-tf" text="KNIFE" />
+						<Label id="wp-side-knife" class="wp-cat-sub stratum-medium-tf" text="{s:side_knife}" />
+					</Panel>
+				</Button>
+				<Button id="wp-cat-gloves" class="wp-cat side-p0">
+					<Panel class="wp-swatch wp-swatch-gloves" />
+					<Panel class="wp-cat-text">
+						<Label class="wp-cat-name stratum-bold-tf" text="GLOVES" />
+						<Label id="wp-side-gloves" class="wp-cat-sub stratum-medium-tf" text="{s:side_gloves}" />
+					</Panel>
+				</Button>
+				<Button id="wp-cat-pistols" class="wp-cat side-p0">
+					<Panel class="wp-swatch wp-swatch-pistol" />
+					<Panel class="wp-cat-text">
+						<Label class="wp-cat-name stratum-bold-tf" text="PISTOLS" />
+						<Label id="wp-side-pistols" class="wp-cat-sub stratum-medium-tf" text="{s:side_pistols}" />
+					</Panel>
+				</Button>
+				<Button id="wp-cat-rifles" class="wp-cat side-p0">
+					<Panel class="wp-swatch wp-swatch-rifle" />
+					<Panel class="wp-cat-text">
+						<Label class="wp-cat-name stratum-bold-tf" text="RIFLES" />
+						<Label id="wp-side-rifles" class="wp-cat-sub stratum-medium-tf" text="{s:side_rifles}" />
+					</Panel>
+				</Button>
+				<Button id="wp-cat-snipers" class="wp-cat side-p0">
+					<Panel class="wp-swatch wp-swatch-sniper" />
+					<Panel class="wp-cat-text">
+						<Label class="wp-cat-name stratum-bold-tf" text="SNIPERS" />
+						<Label id="wp-side-snipers" class="wp-cat-sub stratum-medium-tf" text="{s:side_snipers}" />
+					</Panel>
+				</Button>
+				<Button id="wp-cat-smg" class="wp-cat side-p1">
+					<Panel class="wp-swatch wp-swatch-smg" />
+					<Panel class="wp-cat-text">
+						<Label class="wp-cat-name stratum-bold-tf" text="SMG" />
+						<Label id="wp-side-smg" class="wp-cat-sub stratum-medium-tf" text="{s:side_smg}" />
+					</Panel>
+				</Button>
+				<Button id="wp-cat-heavy" class="wp-cat side-p1">
+					<Panel class="wp-swatch wp-swatch-heavy" />
+					<Panel class="wp-cat-text">
+						<Label class="wp-cat-name stratum-bold-tf" text="HEAVY" />
+						<Label id="wp-side-heavy" class="wp-cat-sub stratum-medium-tf" text="{s:side_heavy}" />
+					</Panel>
+				</Button>
+				<Button id="wp-cat-agents" class="wp-cat side-p1">
+					<Panel class="wp-swatch wp-swatch-agents" />
+					<Panel class="wp-cat-text">
+						<Label class="wp-cat-name stratum-bold-tf" text="AGENTS" />
+						<Label id="wp-side-agents" class="wp-cat-sub stratum-medium-tf" text="{s:side_agents}" />
+					</Panel>
+				</Button>
+				<Button id="wp-cat-music" class="wp-cat side-p1">
+					<Panel class="wp-swatch wp-swatch-music" />
+					<Panel class="wp-cat-text">
+						<Label class="wp-cat-name stratum-bold-tf" text="MUSIC" />
+						<Label id="wp-side-music" class="wp-cat-sub stratum-medium-tf" text="{s:side_music}" />
+					</Panel>
+				</Button>
+				</Panel>
+				<Panel class="wp-side-pager">
+					<Button id="wp-side-prev" class="wp-page">
+						<Label text="‹" />
+					</Button>
+					<Button id="wp-side-num-0" class="wp-num is-cur">
+						<Label class="stratum-medium-tf" text="1" />
+					</Button>
+					<Button id="wp-side-num-1" class="wp-num">
+						<Label class="stratum-medium-tf" text="2" />
+					</Button>
+					<Button id="wp-side-next" class="wp-page">
+						<Label text="›" />
+					</Button>
+				</Panel>
+				</Panel>
+				<Panel class="wp-main">
+					<Panel class="wp-home only-home">
+						<Button id="wp-tile-knife" class="wp-tile">
+							<Panel id="wp-tile-art-knife" class="wp-tile-art wp-tile-knife" />
+							<Label class="wp-tile-name stratum-bold-tf" text="KNIFE" />
+							<Label id="wp-home-knife" class="wp-tile-sub stratum-medium-tf" text="{s:side_knife}" />
+						</Button>
+						<Button id="wp-tile-gloves" class="wp-tile">
+							<Panel id="wp-tile-art-gloves" class="wp-tile-art wp-tile-gloves" />
+							<Label class="wp-tile-name stratum-bold-tf" text="GLOVES" />
+							<Label id="wp-home-gloves" class="wp-tile-sub stratum-medium-tf" text="{s:side_gloves}" />
+						</Button>
+						<Button id="wp-tile-pistols" class="wp-tile">
+							<Panel id="wp-tile-art-pistols" class="wp-tile-art wp-tile-pistols" />
+							<Label class="wp-tile-name stratum-bold-tf" text="PISTOLS" />
+							<Label id="wp-home-pistols" class="wp-tile-sub stratum-medium-tf" text="{s:side_pistols}" />
+						</Button>
+						<Button id="wp-tile-rifles" class="wp-tile">
+							<Panel id="wp-tile-art-rifles" class="wp-tile-art wp-tile-rifles" />
+							<Label class="wp-tile-name stratum-bold-tf" text="RIFLES" />
+							<Label id="wp-home-rifles" class="wp-tile-sub stratum-medium-tf" text="{s:side_rifles}" />
+						</Button>
+						<Button id="wp-tile-snipers" class="wp-tile">
+							<Panel id="wp-tile-art-snipers" class="wp-tile-art wp-tile-snipers" />
+							<Label class="wp-tile-name stratum-bold-tf" text="SNIPERS" />
+							<Label id="wp-home-snipers" class="wp-tile-sub stratum-medium-tf" text="{s:side_snipers}" />
+						</Button>
+						<Button id="wp-tile-smg" class="wp-tile">
+							<Panel id="wp-tile-art-smg" class="wp-tile-art wp-tile-smg" />
+							<Label class="wp-tile-name stratum-bold-tf" text="SMG" />
+							<Label id="wp-home-smg" class="wp-tile-sub stratum-medium-tf" text="{s:side_smg}" />
+						</Button>
+						<Button id="wp-tile-heavy" class="wp-tile">
+							<Panel id="wp-tile-art-heavy" class="wp-tile-art wp-tile-heavy" />
+							<Label class="wp-tile-name stratum-bold-tf" text="HEAVY" />
+							<Label id="wp-home-heavy" class="wp-tile-sub stratum-medium-tf" text="{s:side_heavy}" />
+						</Button>
+						<Button id="wp-tile-agents" class="wp-tile">
+							<Panel id="wp-tile-art-agents" class="wp-tile-art wp-tile-agents" />
+							<Label class="wp-tile-name stratum-bold-tf" text="AGENTS" />
+							<Label id="wp-home-agents" class="wp-tile-sub stratum-medium-tf" text="{s:side_agents}" />
+						</Button>
+						<Button id="wp-tile-music" class="wp-tile">
+							<Panel id="wp-tile-art-music" class="wp-tile-art wp-tile-music" />
+							<Label class="wp-tile-name stratum-bold-tf" text="MUSIC" />
+							<Label id="wp-home-music" class="wp-tile-sub stratum-medium-tf" text="{s:side_music}" />
+						</Button>
+					</Panel>
+					<Panel class="wp-grid only-dyn">
+						<Button id="wp-live-0" class="wp-card wp-off">
+							<Panel id="wp-live-art-0" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live0}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub0}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+						<Button id="wp-live-1" class="wp-card wp-off">
+							<Panel id="wp-live-art-1" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live1}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub1}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+						<Button id="wp-live-2" class="wp-card wp-off">
+							<Panel id="wp-live-art-2" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live2}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub2}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+						<Button id="wp-live-3" class="wp-card wp-off">
+							<Panel id="wp-live-art-3" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live3}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub3}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+						<Button id="wp-live-4" class="wp-card wp-off">
+							<Panel id="wp-live-art-4" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live4}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub4}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+						<Button id="wp-live-5" class="wp-card wp-off">
+							<Panel id="wp-live-art-5" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live5}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub5}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+						<Button id="wp-live-6" class="wp-card wp-off">
+							<Panel id="wp-live-art-6" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live6}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub6}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+						<Button id="wp-live-7" class="wp-card wp-off">
+							<Panel id="wp-live-art-7" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live7}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub7}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+						<Button id="wp-live-8" class="wp-card wp-off">
+							<Panel id="wp-live-art-8" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live8}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub8}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+						<Button id="wp-live-9" class="wp-card wp-off">
+							<Panel id="wp-live-art-9" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live9}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub9}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+						<Button id="wp-live-10" class="wp-card wp-off">
+							<Panel id="wp-live-art-10" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live10}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub10}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+						<Button id="wp-live-11" class="wp-card wp-off">
+							<Panel id="wp-live-art-11" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live11}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub11}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+						<Button id="wp-live-12" class="wp-card wp-off">
+							<Panel id="wp-live-art-12" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live12}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub12}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+						<Button id="wp-live-13" class="wp-card wp-off">
+							<Panel id="wp-live-art-13" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live13}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub13}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+						<Button id="wp-live-14" class="wp-card wp-off">
+							<Panel id="wp-live-art-14" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live14}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub14}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+						<Button id="wp-live-15" class="wp-card wp-off">
+							<Panel id="wp-live-art-15" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live15}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub15}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+						<Button id="wp-live-16" class="wp-card wp-off">
+							<Panel id="wp-live-art-16" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live16}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub16}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+						<Button id="wp-live-17" class="wp-card wp-off">
+							<Panel id="wp-live-art-17" class="wp-art wp-noart" />
+							<Panel class="wp-bar" />
+							<Label class="wp-name stratum-bold-tf" text="{s:live17}" />
+							<Label class="wp-sub stratum-medium-tf" text="{s:livesub17}" />
+							<Label class="wp-badge stratum-bold-tf" text="EQUIPPED" />
+						</Button>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="wp-foot">
+				<Label id="wp-hint" class="wp-hint stratum-medium-tf" text="{s:wp_hint}" />
+				<Panel class="wp-pager">
+					<Button id="wp-prev" class="wp-page">
+						<Label text="‹" />
+					</Button>
+					<Button id="wp-num-0" class="wp-num wp-off">
+						<Label class="stratum-medium-tf" text="{s:num0}" />
+					</Button>
+					<Button id="wp-num-1" class="wp-num wp-off">
+						<Label class="stratum-medium-tf" text="{s:num1}" />
+					</Button>
+					<Button id="wp-num-2" class="wp-num wp-off">
+						<Label class="stratum-medium-tf" text="{s:num2}" />
+					</Button>
+					<Button id="wp-num-3" class="wp-num wp-off">
+						<Label class="stratum-medium-tf" text="{s:num3}" />
+					</Button>
+					<Button id="wp-num-4" class="wp-num wp-off">
+						<Label class="stratum-medium-tf" text="{s:num4}" />
+					</Button>
+					<Button id="wp-num-5" class="wp-num wp-off">
+						<Label class="stratum-medium-tf" text="{s:num5}" />
+					</Button>
+					<Button id="wp-num-6" class="wp-num wp-off">
+						<Label class="stratum-medium-tf" text="{s:num6}" />
+					</Button>
+					<Button id="wp-next" class="wp-page">
+						<Label text="›" />
+					</Button>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

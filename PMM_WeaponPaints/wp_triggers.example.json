@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "layout": "Example: own close button and Rifles / SMG sections",
+  "buttons": {
+    "pmm-my-close": "close",
+    "pmm-my-back": "back",
+    "pmm-my-home": "home",
+    "pmm-my-knife": "open:knife",
+    "pmm-my-gloves": "open:gloves",
+    "pmm-my-agents": "open:agents",
+    "pmm-my-pistols": "weapons:pistols",
+    "pmm-my-rifles": "weapons:rifles",
+    "pmm-my-smg": "weapons:smg",
+    "pmm-my-awp": "weapons:AWP,SSG 08",
+    "pmm-my-refresh": "cmd:css_wp"
+  },
+  "groups": {
+    "rifles": {
+      "title": "RIFLES",
+      "items": ["AK-47", "M4A4", "M4A1-S", "Galil AR", "FAMAS", "SG 553", "AUG"]
+    }
+  }
+}
