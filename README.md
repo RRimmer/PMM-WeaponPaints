@@ -2,7 +2,7 @@
 
 <h2><a href="https://genesis-cs.space/menuconstructor/index.html">>>>Более подробная информация на сайте<<<</a></h2>
 
-Panorama locker for [WeaponPaints](https://github.com/NockyCZ/cs2-WeaponPaints) by **Rimmer**. It draws the WeaponPaints menus as a card grid on mouse panorama. A click still runs the original WeaponPaints option.
+Panorama locker for [WeaponPaints](https://github.com/Nereziel/cs2-WeaponPaints) by **Rimmer**. It draws the WeaponPaints menus as a card grid on mouse panorama. A click still runs the original WeaponPaints option.
 
 **Beta.** Bugs are possible. The panorama design is inspired by [EliteGames.Ro](https://elitegames.ro).
 
@@ -62,7 +62,7 @@ Output: `PMM_WeaponPaints/bin/Release/net10.0/`. Ship `PMM_WeaponPaints.dll`, `i
 
 # PMM_WeaponPaints
 
-Панорамный локер для [WeaponPaints](https://github.com/NockyCZ/cs2-WeaponPaints) от **Rimmer**. Меню WeaponPaints рисуются сеткой карточек на панораме мышью. Клик по-прежнему вызывает исходный пункт WeaponPaints.
+Панорамный локер для [WeaponPaints](https://github.com/Nereziel/cs2-WeaponPaints) от **Rimmer**. Меню WeaponPaints рисуются сеткой карточек на панораме мышью. Клик по-прежнему вызывает исходный пункт WeaponPaints.
 
 **Beta.** Возможны баги. Дизайн панорамы вдохновлён [EliteGames.Ro](https://elitegames.ro).
 
