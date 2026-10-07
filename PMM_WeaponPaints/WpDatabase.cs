@@ -4,28 +4,31 @@ using MySqlConnector;
 
 namespace PMM_WeaponPaints;
 
-internal sealed class WpLoadout
+/// <summary>What one team (T or CT) of a player has equipped in WeaponPaints.</summary>
+internal sealed class TeamData
 {
-    public string? KnifeName { get; set; }
-    public string? KnifePlain { get; set; }
-    public string? KnifeSkin { get; set; }
-    public Dictionary<string, string> WeaponSkins { get; } = new(StringComparer.OrdinalIgnoreCase);
-    public string?[] Side { get; } = new string?[11];
-    public string?[] Art { get; } = new string?[11];
+    /// <summary>Knife display name ("Karambit"), null = Default Knife.</summary>
+    public string? Knife { get; set; }
+
+    /// <summary>weapon defindex -> paint id (guns, knives and gloves).</summary>
+    public Dictionary<int, int> Paints { get; } = new();
+
+    public int GloveDef { get; set; }
+    public int Music { get; set; }
+    public int Pin { get; set; }
+
+    /// <summary>Agent model as WeaponPaints stores it ("tm_leet/tm_leet_variantg"), null = default.</summary>
+    public string? Agent { get; set; }
+
+    public int PaintOf(int def) => Paints.TryGetValue(def, out int paint) ? paint : 0;
 }
 
 internal sealed class WpDatabase
 {
-    private const int CatGloves = 2;
-    private const int CatPistols = 3;
-    private const int CatRifles = 4;
-    private const int CatSnipers = 5;
-    private const int CatSmg = 6;
-    private const int CatHeavy = 7;
-    private const int CatAgents = 8;
-    private const int CatMusic = 9;
+    public const int TeamT = 0;
+    public const int TeamCt = 1;
 
-    private static readonly Dictionary<string, int> DefByClass = new(StringComparer.OrdinalIgnoreCase)
+    public static readonly Dictionary<string, int> DefByClass = new(StringComparer.OrdinalIgnoreCase)
     {
         ["weapon_deagle"] = 1, ["weapon_elite"] = 2, ["weapon_fiveseven"] = 3, ["weapon_glock"] = 4,
         ["weapon_ak47"] = 7, ["weapon_aug"] = 8, ["weapon_awp"] = 9, ["weapon_famas"] = 10,
@@ -36,6 +39,7 @@ internal sealed class WpDatabase
         ["weapon_mp7"] = 33, ["weapon_mp9"] = 34, ["weapon_nova"] = 35, ["weapon_p250"] = 36,
         ["weapon_scar20"] = 38, ["weapon_sg556"] = 39, ["weapon_ssg08"] = 40, ["weapon_m4a1_silencer"] = 60,
         ["weapon_usp_silencer"] = 61, ["weapon_cz75a"] = 63, ["weapon_revolver"] = 64,
+        ["weapon_knife"] = 42, ["weapon_knife_t"] = 59,
         ["weapon_bayonet"] = 500, ["weapon_knife_css"] = 503, ["weapon_knife_flip"] = 505,
         ["weapon_knife_gut"] = 506, ["weapon_knife_karambit"] = 507, ["weapon_knife_m9_bayonet"] = 508,
         ["weapon_knife_tactical"] = 509, ["weapon_knife_falchion"] = 512, ["weapon_knife_survival_bowie"] = 514,
@@ -45,7 +49,7 @@ internal sealed class WpDatabase
         ["weapon_knife_skeleton"] = 525, ["weapon_knife_kukri"] = 526
     };
 
-    private static readonly Dictionary<int, string> NameByDef = new()
+    public static readonly Dictionary<int, string> NameByDef = new()
     {
         [1] = "Desert Eagle", [2] = "Dual Berettas", [3] = "Five-SeveN", [4] = "Glock-18",
         [7] = "AK-47", [8] = "AUG", [9] = "AWP", [10] = "FAMAS", [11] = "G3SG1", [13] = "Galil AR",
@@ -54,39 +58,56 @@ internal sealed class WpDatabase
         [30] = "Tec-9", [31] = "Zeus x27", [32] = "P2000", [33] = "MP7", [34] = "MP9", [35] = "Nova",
         [36] = "P250", [38] = "SCAR-20", [39] = "SG 553", [40] = "SSG 08", [60] = "M4A1-S",
         [61] = "USP-S", [63] = "CZ75-Auto", [64] = "R8 Revolver",
+        [42] = "Default Knife", [59] = "Default Knife",
         [500] = "Bayonet", [503] = "Classic Knife", [505] = "Flip Knife", [506] = "Gut Knife",
         [507] = "Karambit", [508] = "M9 Bayonet", [509] = "Huntsman Knife", [512] = "Falchion Knife",
         [514] = "Bowie Knife", [515] = "Butterfly Knife", [516] = "Shadow Daggers", [517] = "Paracord Knife",
         [518] = "Survival Knife", [519] = "Ursus Knife", [520] = "Navaja Knife", [521] = "Nomad Knife",
         [522] = "Stiletto Knife", [523] = "Talon Knife", [525] = "Skeleton Knife", [526] = "Kukri Knife",
-        [5027] = "Bloodhound Gloves", [5030] = "Sport Gloves", [5031] = "Driver Gloves",
+        [4725] = "Broken Fang Gloves", [5027] = "Bloodhound Gloves", [5030] = "Sport Gloves", [5031] = "Driver Gloves",
         [5032] = "Hand Wraps", [5033] = "Moto Gloves", [5034] = "Specialist Gloves", [5035] = "Hydra Gloves"
     };
 
-    private static readonly Dictionary<int, int> Preferred = new()
-    {
-        [CatPistols] = 1, [CatRifles] = 7, [CatSnipers] = 9, [CatSmg] = 17, [CatHeavy] = 35
-    };
+    private static readonly Dictionary<string, int> DefByName = BuildDefByName();
 
     private readonly Dictionary<(int Def, int Paint), string> _icons = new();
-    private readonly Dictionary<string, string> _iconClass = new(StringComparer.Ordinal);
 
+    private static Dictionary<string, int> BuildDefByName()
+    {
+        Dictionary<string, int> map = new(StringComparer.OrdinalIgnoreCase);
+        foreach ((int def, string name) in NameByDef)
+        {
+            map.TryAdd(name, def);
+        }
+
+        return map;
+    }
+
+    public static int DefOf(string? name)
+    {
+        return name != null && DefByName.TryGetValue(name.Trim(), out int def) ? def : 0;
+    }
+
+    /// <summary>Index icons.json keys ("AK-47 | Redline (282)") by (defindex, paint).</summary>
     public void IndexIcons(IReadOnlyDictionary<string, string> icons)
     {
         _icons.Clear();
-        _iconClass.Clear();
-        foreach ((string key, string cls) in icons)
+        foreach (string key in icons.Keys)
         {
-            _iconClass[key] = cls;
             if (!TryPaint(key, out int paint))
             {
                 continue;
             }
 
+            int bar = key.IndexOf('|');
+            string head = (bar >= 0 ? key[..bar] : key).Replace("★", "").Replace("(", " ").Replace(")", " ").Trim();
             foreach ((int def, string name) in NameByDef)
             {
-                int bar = key.IndexOf('|');
-                string head = (bar >= 0 ? key[..bar] : key).Replace("★", "").Trim();
+                if (def == 42 || def == 59)
+                {
+                    continue;
+                }
+
                 if (head.Contains(name, StringComparison.OrdinalIgnoreCase))
                 {
                     if (!_icons.TryGetValue((def, paint), out string? current) || key.Length < current.Length)
@@ -96,6 +117,12 @@ internal sealed class WpDatabase
                 }
             }
         }
+    }
+
+    /// <summary>icons.json key for a weapon/knife/glove finish, or null.</summary>
+    public string? IconKey(int def, int paint)
+    {
+        return paint > 0 && _icons.TryGetValue((def, paint), out string? key) ? key : null;
     }
 
     public bool TryConnect(PluginConfig config, ILogger logger)
@@ -122,180 +149,111 @@ internal sealed class WpDatabase
         }
     }
 
-    public WpLoadout Load(PluginConfig config, string steam, int team)
+    /// <summary>Reads the loadout of both teams. Index 0 = T (weapon_team 2), 1 = CT (weapon_team 3).</summary>
+    public TeamData[] Load(PluginConfig config, string steam, ILogger logger)
     {
-        WpLoadout loadout = new();
-        Dictionary<int, int> paints = new();
-        string? knifeClass = null;
-        int gloveDef = 0;
-        int musicId = 0;
-        string? agent = null;
+        TeamData[] teams = { new(), new() };
+        using MySqlConnection connection = Open(config);
 
+        Query(connection, steam, logger, "SELECT weapon_team, weapon_defindex, weapon_paint_id FROM wp_player_skins WHERE steamid = @steam", reader =>
+        {
+            int team = TeamIndex(reader.GetInt32(0));
+            if (team >= 0)
+            {
+                teams[team].Paints[reader.GetInt32(1)] = reader.GetInt32(2);
+            }
+        });
+
+        Query(connection, steam, logger, "SELECT weapon_team, knife FROM wp_player_knife WHERE steamid = @steam", reader =>
+        {
+            int team = TeamIndex(reader.GetInt32(0));
+            if (team >= 0 && !reader.IsDBNull(1) && DefByClass.TryGetValue(reader.GetString(1), out int def) && NameByDef.TryGetValue(def, out string? name))
+            {
+                teams[team].Knife = name;
+            }
+        });
+
+        Query(connection, steam, logger, "SELECT weapon_team, weapon_defindex FROM wp_player_gloves WHERE steamid = @steam", reader =>
+        {
+            int team = TeamIndex(reader.GetInt32(0));
+            if (team >= 0 && !reader.IsDBNull(1))
+            {
+                teams[team].GloveDef = reader.GetInt32(1);
+            }
+        });
+
+        Query(connection, steam, logger, "SELECT weapon_team, music_id FROM wp_player_music WHERE steamid = @steam", reader =>
+        {
+            int team = TeamIndex(reader.GetInt32(0));
+            if (team >= 0 && !reader.IsDBNull(1))
+            {
+                teams[team].Music = reader.GetInt32(1);
+            }
+        });
+
+        Query(connection, steam, logger, "SELECT weapon_team, id FROM wp_player_pins WHERE steamid = @steam", reader =>
+        {
+            int team = TeamIndex(reader.GetInt32(0));
+            if (team >= 0 && !reader.IsDBNull(1))
+            {
+                teams[team].Pin = reader.GetInt32(1);
+            }
+        });
+
+        Query(connection, steam, logger, "SELECT agent_ct, agent_t FROM wp_player_agents WHERE steamid = @steam LIMIT 1", reader =>
+        {
+            teams[TeamCt].Agent = CleanAgent(reader.IsDBNull(0) ? null : reader.GetString(0));
+            teams[TeamT].Agent = CleanAgent(reader.IsDBNull(1) ? null : reader.GetString(1));
+        });
+
+        return teams;
+    }
+
+    /// <summary>Writes the agent of one team, the same row WeaponPaints reads on connect.</summary>
+    public void SaveAgent(PluginConfig config, string steam, int team, string? model)
+    {
         using MySqlConnection connection = Open(config);
         using MySqlCommand command = connection.CreateCommand();
-        command.CommandText = """
-            SELECT weapon_defindex, weapon_paint_id FROM wp_player_skins WHERE steamid = @steam AND weapon_team = @team;
-            SELECT knife FROM wp_player_knife WHERE steamid = @steam AND weapon_team = @team LIMIT 1;
-            SELECT weapon_defindex FROM wp_player_gloves WHERE steamid = @steam AND weapon_team = @team LIMIT 1;
-            SELECT music_id FROM wp_player_music WHERE steamid = @steam AND weapon_team = @team LIMIT 1;
-            SELECT agent_ct, agent_t FROM wp_player_agents WHERE steamid = @steam LIMIT 1;
-            """;
+        string column = team == TeamCt ? "agent_ct" : "agent_t";
+        command.CommandText = $"INSERT INTO wp_player_agents (steamid, {column}) VALUES (@steam, @model) ON DUPLICATE KEY UPDATE {column} = @model";
         command.Parameters.AddWithValue("@steam", steam);
-        command.Parameters.AddWithValue("@team", team);
-        using (MySqlDataReader reader = command.ExecuteReader())
-        {
-            while (reader.Read())
-            {
-                paints[reader.GetInt32(0)] = reader.GetInt32(1);
-            }
-
-            if (reader.NextResult() && reader.Read() && !reader.IsDBNull(0))
-            {
-                knifeClass = reader.GetString(0);
-            }
-
-            if (reader.NextResult() && reader.Read() && !reader.IsDBNull(0))
-            {
-                gloveDef = reader.GetInt32(0);
-            }
-
-            if (reader.NextResult() && reader.Read() && !reader.IsDBNull(0))
-            {
-                musicId = reader.GetInt32(0);
-            }
-
-            if (reader.NextResult() && reader.Read())
-            {
-                int column = team == 3 ? 0 : 1;
-                if (!reader.IsDBNull(column))
-                {
-                    agent = reader.GetString(column);
-                }
-            }
-        }
-
-        Dictionary<int, (int Def, string Key, string Label)> best = new();
-        foreach ((int def, int paint) in paints)
-        {
-            if (paint <= 0 || !NameByDef.TryGetValue(def, out string? weapon))
-            {
-                continue;
-            }
-
-            string key = _icons.TryGetValue((def, paint), out string? found) ? found : weapon + " | #" + paint;
-            loadout.WeaponSkins[weapon] = key;
-            int cat = CategoryOf(def);
-            if (cat < 0)
-            {
-                continue;
-            }
-
-            string label = LabelOf(weapon, key);
-            if (!best.TryGetValue(cat, out (int Def, string Key, string Label) current) || Better(cat, def, current.Def))
-            {
-                best[cat] = (def, key, label);
-            }
-        }
-
-        foreach ((int cat, (int _, string key, string label)) in best)
-        {
-            loadout.Side[cat] = label;
-            if (_iconClass.TryGetValue(key, out string? art))
-            {
-                loadout.Art[cat] = art;
-            }
-        }
-
-        if (!string.IsNullOrEmpty(knifeClass) && DefByClass.TryGetValue(knifeClass, out int knifeDef) && NameByDef.TryGetValue(knifeDef, out string? knifeName))
-        {
-            loadout.KnifeName = knifeName;
-            if (paints.TryGetValue(knifeDef, out int knifePaint) && knifePaint > 0)
-            {
-                string key = _icons.TryGetValue((knifeDef, knifePaint), out string? found) ? found : knifeName + " | #" + knifePaint;
-                loadout.KnifePlain = key;
-                loadout.KnifeSkin = FinishOf(key);
-            }
-        }
-
-        if (gloveDef > 0 && NameByDef.TryGetValue(gloveDef, out string? gloveName))
-        {
-            string label = gloveName;
-            string? key = null;
-            if (paints.TryGetValue(gloveDef, out int glovePaint) && glovePaint > 0 && _icons.TryGetValue((gloveDef, glovePaint), out string? found))
-            {
-                key = found;
-                label = LabelOf(gloveName, found);
-            }
-
-            loadout.Side[CatGloves] = label;
-            if (key != null && _iconClass.TryGetValue(key, out string? art))
-            {
-                loadout.Art[CatGloves] = art;
-            }
-        }
-
-        if (musicId > 0)
-        {
-            loadout.Side[CatMusic] = "Kit " + musicId;
-        }
-
-        if (!string.IsNullOrWhiteSpace(agent) && !agent.Equals("null", StringComparison.OrdinalIgnoreCase))
-        {
-            int slash = agent.LastIndexOf('/');
-            loadout.Side[CatAgents] = slash >= 0 ? agent[(slash + 1)..] : agent;
-        }
-
-        return loadout;
+        command.Parameters.AddWithValue("@model", string.IsNullOrEmpty(model) ? (object)DBNull.Value : model);
+        command.ExecuteNonQuery();
     }
 
-    private static bool Better(int cat, int candidate, int current)
+    private static string? CleanAgent(string? agent)
     {
-        if (Preferred.TryGetValue(cat, out int preferred))
-        {
-            if (candidate == preferred)
-            {
-                return true;
-            }
-
-            if (current == preferred)
-            {
-                return false;
-            }
-        }
-
-        return candidate < current;
+        return string.IsNullOrWhiteSpace(agent) || agent.Equals("null", StringComparison.OrdinalIgnoreCase) ? null : agent.Trim();
     }
 
-    private static int CategoryOf(int def)
+    private static int TeamIndex(int weaponTeam)
     {
-        return def switch
+        return weaponTeam switch
         {
-            1 or 2 or 3 or 4 or 30 or 31 or 32 or 36 or 61 or 63 or 64 => CatPistols,
-            7 or 8 or 10 or 13 or 16 or 39 or 60 => CatRifles,
-            9 or 11 or 38 or 40 => CatSnipers,
-            17 or 19 or 23 or 24 or 26 or 33 or 34 => CatSmg,
-            14 or 25 or 27 or 28 or 29 or 35 => CatHeavy,
+            2 => TeamT,
+            3 => TeamCt,
             _ => -1
         };
     }
 
-    private static string LabelOf(string weapon, string key)
+    // One query per table: an older WeaponPaints without wp_player_pins must not break the rest.
+    private static void Query(MySqlConnection connection, string steam, ILogger logger, string sql, Action<MySqlDataReader> row)
     {
-        string finish = FinishOf(key);
-        return finish.Length == 0 ? weapon : weapon + "  |  " + finish;
-    }
-
-    private static string FinishOf(string key)
-    {
-        int bar = key.LastIndexOf('|');
-        string finish = bar >= 0 ? key[(bar + 1)..].Trim() : key;
-        int paren = finish.LastIndexOf('(');
-        if (paren > 0 && finish.EndsWith(')'))
+        try
         {
-            finish = finish[..paren].Trim();
+            using MySqlCommand command = connection.CreateCommand();
+            command.CommandText = sql;
+            command.Parameters.AddWithValue("@steam", steam);
+            using MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                row(reader);
+            }
         }
-
-        return finish.StartsWith('#') ? "" : finish;
+        catch (MySqlException ex) when (ex.ErrorCode == MySqlErrorCode.NoSuchTable)
+        {
+            logger.LogDebug("PMM_WeaponPaints: {Message}", ex.Message);
+        }
     }
 
     private static bool TryPaint(string key, out int paint)

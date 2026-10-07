@@ -2,11 +2,13 @@
 
 <h2><a href="https://genesis-cs.space/menuconstructor/index.html">>>>Более подробная информация на сайте<<<</a></h2>
 
-Panorama locker for [WeaponPaints](https://github.com/NockyCZ/cs2-WeaponPaints) by **Rimmer**. It draws the WeaponPaints menus as a card grid on mouse panorama. A click still runs the original WeaponPaints option.
+Panorama locker by **Rimmer** for [WeaponPaints](https://github.com/Nereziel/cs2-WeaponPaints). It draws the WeaponPaints menus as a card grid on mouse panorama. A click still runs the original WeaponPaints option.
 
 **Beta.** Bugs are possible. The panorama design is inspired by [EliteGames.Ro](https://elitegames.ro).
 
-Current version: **0.0.3**. Needs [MenuManager 1.2.02](https://github.com/RRimmer/PanoramaMenuManagerCS2/releases/tag/MenuManagerCS2-1.2.02) and CounterStrikeSharp 1.0.376.
+Current version: **[0.1.0](https://github.com/RRimmer/PMM-WeaponPaints/releases/tag/PMM_WeaponPaints-0.1.0)**. Needs [MenuManager 1.2.03](https://github.com/RRimmer/PanoramaMenuManagerCS2/releases/tag/MenuManagerCS2-1.2.03) (1.2.02 still works) and CounterStrikeSharp 1.0.376.
+
+**0.1.0.** Config `"Language": "ru"` or `"en"`. Equipped items use the team color, and each card has T/CT dots. Rarity frames come from `pmm_items.json`. Agents, music kits and coins have their own art. Gloves open by type. The grid is 5 cards wide, the window is 65% by 70%. Phantom pictures from the first test are fixed. Default gloves, agents, music and coins have pictures.
 
 You can read more on the site: https://genesis-cs.space/menuconstructor/index.html
 
@@ -22,14 +24,14 @@ You can read more on the site: https://genesis-cs.space/menuconstructor/index.ht
 
 | Folder | What it is |
 | --- | --- |
-| `PMM_WeaponPaints` | The plugin: `Plugin.cs`, `WpDatabase.cs`, `icons.json`, `panorama/` |
+| `PMM_WeaponPaints` | The plugin: `Plugin.cs`, `WpDatabase.cs`, `ItemData.cs`, `Lang.cs`, `icons.json`, `pmm_items.json`, `panorama/` |
 | `MenuManagerApi` | Compile-time library. Do not copy `MenuManagerApi.dll` next to this plugin |
 
-The player-ready archive is not stored in git. Attach `PMM_WeaponPaints-0.0.3.zip` to a Release yourself.
+The player-ready archive is [PMM_WeaponPaints-0.1.0](https://github.com/RRimmer/PMM-WeaponPaints/releases/tag/PMM_WeaponPaints-0.1.0).
 
 ## Install from a Release
 
-MenuManager 1.2.02 must already be on the server. This archive does not include it.
+MenuManager 1.2.03 must already be on the server (1.2.02 still works). This archive does not include it. Keep `pmm_items.json` next to the DLL. `"Language"` in the config is `ru` or `en`. An old config is not updated by itself: add the field by hand. The database user needs INSERT/UPDATE on `wp_player_agents`. `!pws` opens only on T or CT, and only for mouse panorama.
 
 Copy `Server-plugins/counterstrikesharp` into `game/csgo/addons/`. You get `addons/counterstrikesharp/plugins/PMM_WeaponPaints/`. Keep `MySqlConnector.dll` next to `PMM_WeaponPaints.dll`. Delete `MenuManagerApi.dll` from `plugins/WeaponPaints` and from this plugin folder. One copy stays in `shared/MenuManagerApi/` from MenuManager. Delete `plugins/PPW_WeaponPaints` if it is still there. Restart the server. `css_plugins reload` does not unload the old assembly.
 
@@ -52,7 +54,7 @@ You need the .NET 10 SDK.
 dotnet build PMM_WeaponPaints.sln --configuration Release
 ```
 
-Output: `PMM_WeaponPaints/bin/Release/net10.0/`. Ship `PMM_WeaponPaints.dll`, `icons.json`, `MySqlConnector.dll` and the `panorama` folder. Do not ship `CounterStrikeSharp.API.dll` or `MenuManagerApi.dll`.
+Output: `PMM_WeaponPaints/bin/Release/net10.0/`. Ship `PMM_WeaponPaints.dll`, `icons.json`, `pmm_items.json`, `MySqlConnector.dll` and the `panorama` folder. Do not ship `CounterStrikeSharp.API.dll` or `MenuManagerApi.dll`.
 
 ## License
 
@@ -62,11 +64,13 @@ Output: `PMM_WeaponPaints/bin/Release/net10.0/`. Ship `PMM_WeaponPaints.dll`, `i
 
 # PMM_WeaponPaints
 
-Панорамный локер для [WeaponPaints](https://github.com/NockyCZ/cs2-WeaponPaints) от **Rimmer**. Меню WeaponPaints рисуются сеткой карточек на панораме мышью. Клик по-прежнему вызывает исходный пункт WeaponPaints.
+Панорамный локер от **Rimmer** для [WeaponPaints](https://github.com/Nereziel/cs2-WeaponPaints). Меню WeaponPaints рисуются сеткой карточек на панораме мышью. Клик по-прежнему вызывает исходный пункт WeaponPaints.
 
 **Beta.** Возможны баги. Дизайн панорамы вдохновлён [EliteGames.Ro](https://elitegames.ro).
 
-Текущая версия: **0.0.3**. Нужен [MenuManager 1.2.02](https://github.com/RRimmer/PanoramaMenuManagerCS2/releases/tag/MenuManagerCS2-1.2.02) и CounterStrikeSharp 1.0.376.
+Текущая версия: **[0.1.0](https://github.com/RRimmer/PMM-WeaponPaints/releases/tag/PMM_WeaponPaints-0.1.0)**. Нужен [MenuManager 1.2.03](https://github.com/RRimmer/PanoramaMenuManagerCS2/releases/tag/MenuManagerCS2-1.2.03) (1.2.02 тоже подходит) и CounterStrikeSharp 1.0.376.
+
+**0.1.0.** В конфиге `"Language": "ru"` или `"en"`. Экипированное красится в цвет команды, на карточке кружки T/CT. Рамки редкости берутся из `pmm_items.json`. У агентов, музыки и значков свои картинки. Перчатки открываются по типу. Сетка — 5 карточек в ряд, окно 65% на 70%. Фантомные картинки с первого теста исправлены. У стандарта перчаток, агентов, музыки и значков есть картинки.
 
 Вы можете ознакомиться с более подробной информацией на сайте: https://genesis-cs.space/menuconstructor/index.html
 
@@ -82,14 +86,14 @@ Output: `PMM_WeaponPaints/bin/Release/net10.0/`. Ship `PMM_WeaponPaints.dll`, `i
 
 | Папка | Зачем |
 | --- | --- |
-| `PMM_WeaponPaints` | Плагин: `Plugin.cs`, `WpDatabase.cs`, `icons.json`, `panorama/` |
+| `PMM_WeaponPaints` | Плагин: `Plugin.cs`, `WpDatabase.cs`, `ItemData.cs`, `Lang.cs`, `icons.json`, `pmm_items.json`, `panorama/` |
 | `MenuManagerApi` | Библиотека только для сборки. `MenuManagerApi.dll` рядом с этим плагином не клади |
 
-Готовый архив в git не входит. `PMM_WeaponPaints-0.0.3.zip` нужно прикрепить к Release вручную.
+Готовый архив: [PMM_WeaponPaints-0.1.0](https://github.com/RRimmer/PMM-WeaponPaints/releases/tag/PMM_WeaponPaints-0.1.0).
 
 ## Установка с Release
 
-На сервере уже должен стоять MenuManager 1.2.02. В этот архив он не входит.
+На сервере уже должен стоять MenuManager 1.2.03 (1.2.02 тоже подходит). В этот архив он не входит. Рядом с DLL оставь `pmm_items.json`. `"Language"` в конфиге — `ru` или `en`. Старый конфиг сам не дополняется: поле нужно дописать. Пользователю базы нужно право INSERT/UPDATE на `wp_player_agents`. `!pws` открывается только за T или CT и только на панораме мышью.
 
 `Server-plugins/counterstrikesharp` копируется в `game/csgo/addons/`. Получится `addons/counterstrikesharp/plugins/PMM_WeaponPaints/`. `MySqlConnector.dll` оставь рядом с `PMM_WeaponPaints.dll`. Удали `MenuManagerApi.dll` из `plugins/WeaponPaints` и из папки этого плагина. Одна копия остаётся в `shared/MenuManagerApi/` от MenuManager. Папку `plugins/PPW_WeaponPaints` удали, если она есть. Потом полностью перезапусти сервер. `css_plugins reload` старую сборку не выгружает.
 
@@ -112,7 +116,7 @@ Output: `PMM_WeaponPaints/bin/Release/net10.0/`. Ship `PMM_WeaponPaints.dll`, `i
 dotnet build PMM_WeaponPaints.sln --configuration Release
 ```
 
-Результат: `PMM_WeaponPaints/bin/Release/net10.0/`. В поставку входят `PMM_WeaponPaints.dll`, `icons.json`, `MySqlConnector.dll` и папка `panorama`. `CounterStrikeSharp.API.dll` и `MenuManagerApi.dll` не клади.
+Результат: `PMM_WeaponPaints/bin/Release/net10.0/`. В поставку входят `PMM_WeaponPaints.dll`, `icons.json`, `pmm_items.json`, `MySqlConnector.dll` и папка `panorama`. `CounterStrikeSharp.API.dll` и `MenuManagerApi.dll` не клади.
 
 ## Лицензия
 

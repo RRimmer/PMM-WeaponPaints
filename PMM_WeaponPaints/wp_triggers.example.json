@@ -12,12 +12,22 @@
     "pmm-my-rifles": "weapons:rifles",
     "pmm-my-smg": "weapons:smg",
     "pmm-my-awp": "weapons:AWP,SSG 08",
-    "pmm-my-refresh": "cmd:css_wp"
+    "pmm-my-refresh": "cmd:css_wp",
+    "pmm-my-coins": "open:pins",
+    "pmm-my-music": "open:music"
   },
   "groups": {
     "rifles": {
       "title": "RIFLES",
-      "items": ["AK-47", "M4A4", "M4A1-S", "Galil AR", "FAMAS", "SG 553", "AUG"]
+      "items": [
+        "AK-47",
+        "M4A4",
+        "M4A1-S",
+        "Galil AR",
+        "FAMAS",
+        "SG 553",
+        "AUG"
+      ]
     }
   }
 }

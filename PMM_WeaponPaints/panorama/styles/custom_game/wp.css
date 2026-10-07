@@ -1,52 +1,73 @@
-/* ==========================================================================
-   PMM Weapon Skins locker.
-   Grid is 6 x 3 (18 cards per page). Card = 144 x 170 + 8px gap.
-   ========================================================================== */
+/* ============================================================
+   PMM | Weapon Skins 0.1.0
+   Root: 65% x 70% of the screen (16:9, 16:10 and 4:3).
+   Grid rows hold five cards that share the row width.
+   ============================================================ */
 
 .wp-screen
 {
 	width: 100%;
 	height: 100%;
+	z-index: 2000000000;
 }
 
 .wp-root
 {
-	width: 1240px;
-	height: 760px;
+	width: 65%;
+	height: 70%;
 	horizontal-align: center;
 	vertical-align: middle;
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#171e29f2), to(#0e131bf2));
-	border: 2px solid #343f50;
-	border-radius: 12px;
 	flow-children: down;
-	padding: 18px 22px 14px 22px;
+	padding: 20px 22px 12px 22px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#18202cf5), to(#0c1118f5));
+	border: 1px solid #3a4658;
+	border-radius: 14px;
+	box-shadow: #000000b0 0px 18px 48px 0px;
+	overflow: clip clip;
 }
 
 .wp-root.wp-hidden
 {
-	opacity: 0;
 	visibility: collapse;
 }
 
-/* ---- view switching --------------------------------------------------- */
+/* ---------- language: static labels come in pairs ---------- */
+
+.l-ru
+{
+	visibility: collapse;
+}
+
+.wp-root.lang-ru .l-ru
+{
+	visibility: visible;
+}
+
+.wp-root.lang-ru .l-en
+{
+	visibility: collapse;
+}
+
+/* ---------- views ---------- */
 
 .only-home,
-.only-dyn
+.only-dyn,
+.only-pins
 {
 	visibility: collapse;
 }
 
 .wp-root.view-home .only-home,
 .wp-root.view-knife .only-dyn,
-.wp-root.view-live .only-dyn
+.wp-root.view-live .only-dyn,
+.wp-root.view-agents .only-dyn,
+.wp-root.view-gloves .only-dyn,
+.wp-root.cat-pins .only-pins
 {
 	visibility: visible;
 }
 
-.wp-root.view-home .wp-pager,
-.wp-root.view-home .wp-back,
-.wp-root.view-home .wp-brand,
-.wp-root.single-page .wp-pager
+.wp-root.view-home .wp-back
 {
 	visibility: collapse;
 }
@@ -56,41 +77,92 @@
 	visibility: collapse;
 }
 
-/* ---- header ----------------------------------------------------------- */
+/* ---------- header ---------- */
 
 .wp-top
 {
 	width: 100%;
-	height: 92px;
+	height: 88px;
 	flow-children: right;
+	overflow: clip noclip;
+	border-bottom: 1px solid #2a3443;
 }
 
 .wp-heading
 {
+	width: fill-parent-flow(1.0);
 	flow-children: down;
-	vertical-align: center;
+	vertical-align: top;
 }
 
 .wp-brand
 {
-	color: #e6b84d;
-	font-size: 14px;
-	letter-spacing: 2px;
+	color: #f0b93f;
+	font-size: 15px;
+	letter-spacing: 3px;
+	text-transform: uppercase;
 }
 
 .wp-title
 {
-	color: #f4f7fb;
-	font-size: 36px;
+	color: #ffffff;
+	font-size: 34px;
+	letter-spacing: 1px;
 	margin-top: 2px;
 	text-transform: uppercase;
+	width: 100%;
+	text-overflow: shrink;
 }
 
 .wp-crumb
 {
-	color: #8b95a3;
-	font-size: 14px;
-	margin-top: 2px;
+	color: #a3adbb;
+	font-size: 16px;
+	width: 100%;
+	text-overflow: shrink;
+}
+
+/* warning shown above the coin grid */
+.wp-warn
+{
+	width: 46%;
+	height: 64px;
+	vertical-align: top;
+	margin: 2px 16px 0px 16px;
+	padding: 8px 14px;
+	flow-children: right;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#4a3410f0), to(#2a2010f0));
+	border: 1px solid #f0b93f;
+	border-radius: 10px;
+	box-shadow: #f0b93f30 0px 0px 14px 0px;
+}
+
+.wp-warn-icon
+{
+	width: 30px;
+	height: 30px;
+	vertical-align: center;
+	margin-right: 12px;
+	border-radius: 15px;
+	background-color: #f0b93f;
+}
+
+.wp-warn-icon Label
+{
+	color: #1a1408;
+	font-size: 20px;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.wp-warn-text
+{
+	width: fill-parent-flow(1.0);
+	vertical-align: center;
+	color: #ffe2a0;
+	font-size: 15px;
+	white-space: normal;
+	text-overflow: shrink;
 }
 
 .wp-tools
@@ -98,92 +170,92 @@
 	flow-children: right;
 	horizontal-align: right;
 	vertical-align: top;
-	margin-top: 8px;
+	margin-top: 4px;
 }
 
 .wp-back
 {
-	height: 40px;
-	padding: 0px 18px;
+	height: 42px;
+	padding: 0px 20px;
 	margin-right: 10px;
-	background-color: #1a212b;
-	border: 2px solid #2f3a4c;
-	border-radius: 20px;
-	transition-property: background-color, border;
+	background-color: #1b232e;
+	border: 2px solid #344155;
+	border-radius: 21px;
+	transition-property: brightness, transform;
 	transition-duration: 0.12s;
+	transition-timing-function: ease-out;
 }
 
 .wp-back:hover
 {
-	background-color: #263246;
-	border: 2px solid #c9a15a;
-}
-
-.wp-back:active
-{
-	background-color: #1a212b;
+	border: 2px solid #f0b93f;
+	brightness: 1.25;
 }
 
 .wp-back Label
 {
 	color: #f4f7fb;
-	font-size: 16px;
+	font-size: 17px;
+	letter-spacing: 1px;
 	vertical-align: middle;
 }
 
 .wp-x
 {
-	width: 40px;
-	height: 40px;
+	width: 42px;
+	height: 42px;
 	background-color: #c93642;
-	border-radius: 20px;
-	transition-property: background-color, transform;
+	border-radius: 21px;
+	transition-property: brightness, transform;
 	transition-duration: 0.12s;
+	transition-timing-function: ease-out;
 }
 
 .wp-x:hover
 {
 	background-color: #f2495a;
-	transform: scale3d(1.08, 1.08, 1.0);
+	transform: scale3d(1.08, 1.08, 1);
 }
 
 .wp-x Label
 {
 	color: #ffffff;
-	font-size: 22px;
+	font-size: 24px;
 	horizontal-align: center;
 	vertical-align: middle;
 }
 
-/* ---- body / sidebar --------------------------------------------------- */
+/* ---------- body ---------- */
 
 .wp-body
 {
 	width: 100%;
-	height: fill-parent-flow(1);
+	height: fill-parent-flow(1.0);
 	flow-children: right;
+	margin-top: 14px;
 }
+
+/* ---------- left column ---------- */
 
 .wp-rail
 {
-	width: 250px;
+	width: 23%;
 	height: 100%;
 	flow-children: down;
 	margin-right: 18px;
+	overflow: clip noclip;
 }
 
 .wp-side
 {
 	width: 100%;
-	height: fill-parent-flow(1);
+	height: fill-parent-flow(1.0);
 	flow-children: down;
-	overflow: noclip;
+	overflow: noclip noclip;
 }
 
-.wp-root.side-p0 .wp-cat.side-p1,
-.wp-root.side-p1 .wp-cat.side-p0,
-.wp-root.side-p0 .pmm-side-1,
-.wp-root.side-p1 .pmm-side-0
+.wp-root.side-p0 .side-p1,
+.wp-root.side-p1 .side-p0
 {
 	visibility: collapse;
 }
@@ -192,29 +264,31 @@
 {
 	flow-children: right;
 	horizontal-align: center;
-	margin-top: 4px;
+	margin-top: 6px;
 }
 
 .wp-cat
 {
 	width: 100%;
-	height: 74px;
-	flow-children: right;
-	background-color: #151b24;
-	border: 2px solid #243041;
-	border-radius: 8px;
+	height: 72px;
 	margin-bottom: 8px;
-	padding: 8px;
-	transition-property: background-color, border;
+	flow-children: right;
+	padding: 10px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#18202b), to(#141a23));
+	border: 2px solid #253142;
+	border-radius: 10px;
+	transition-property: brightness, transform;
 	transition-duration: 0.12s;
+	transition-timing-function: ease-out;
 }
 
 .wp-cat:hover
 {
-	background-color: #1c2532;
 	border: 2px solid #c9a15a;
+	brightness: 1.2;
 }
 
+.wp-cat.is-cur,
 .wp-root.cat-loadout #wp-cat-loadout,
 .wp-root.cat-knife #wp-cat-knife,
 .wp-root.cat-gloves #wp-cat-gloves,
@@ -224,86 +298,41 @@
 .wp-root.cat-smg #wp-cat-smg,
 .wp-root.cat-heavy #wp-cat-heavy,
 .wp-root.cat-agents #wp-cat-agents,
-.wp-root.cat-music #wp-cat-music
+.wp-root.cat-music #wp-cat-music,
+.wp-root.cat-pins #wp-cat-pins
 {
-	background-color: gradient(linear, 0% 0%, 100% 0%, from(#3a2f14), to(#1a212b));
 	border: 2px solid #f0b93f;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#3a2e14), to(#1a1d22));
+	box-shadow: #f0b93f40 0px 0px 12px 0px;
 }
 
 .wp-swatch
 {
-	width: 54px;
-	height: 54px;
-	border-radius: 6px;
-	margin-right: 10px;
-	background-size: contain;
+	width: 50px;
+	height: 50px;
+	border-radius: 8px;
+	margin-right: 12px;
+	vertical-align: middle;
+	background-size: 92% 69%;
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
-.wp-swatch-loadout
-{
-	background-color: #2a2a22;
-	background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_ak47_png.vtex");
-}
-
-.wp-swatch-knife
-{
-	background-color: #3a2a22;
-	background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_push_png.vtex");
-}
-
-.wp-swatch-gloves
-{
-	background-color: #2a2438;
-	background-image: url("s2r://panorama/images/econ/weapons/base_weapons/ct_gloves_png.vtex");
-}
-
-.wp-swatch-pistol
-{
-	background-color: #1e3348;
-	background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_usp_silencer_png.vtex");
-}
-
-.wp-swatch-rifle
-{
-	background-color: #3a2a18;
-	background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_ak47_png.vtex");
-}
-
-.wp-swatch-sniper
-{
-	background-color: #1a2830;
-	background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_awp_png.vtex");
-}
-
-.wp-swatch-smg
-{
-	background-color: #2a2418;
-	background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_mac10_png.vtex");
-}
-
-.wp-swatch-heavy
-{
-	background-color: #243028;
-	background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_nova_png.vtex");
-}
-
-.wp-swatch-agents
-{
-	background-color: #243044;
-	background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_professional_varg_png.vtex");
-}
-
-.wp-swatch-music
-{
-	background-color: #2a2030;
-	background-image: url("s2r://panorama/images/icons/equipment/musickit.vsvg");
-	background-size: 60% 60%;
-}
+.wp-swatch-loadout { background-color: #2a2a22; background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_ak47_png.vtex"); }
+.wp-swatch-knife { background-color: #3a2a22; background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_push_png.vtex"); }
+.wp-swatch-gloves { background-color: #2a2438; background-image: url("s2r://panorama/images/econ/weapons/base_weapons/ct_gloves_png.vtex"); }
+.wp-swatch-pistol { background-color: #1e3348; background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_usp_silencer_png.vtex"); }
+.wp-swatch-rifle { background-color: #3a2a18; background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_ak47_png.vtex"); }
+.wp-swatch-sniper { background-color: #1a2830; background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_awp_png.vtex"); }
+.wp-swatch-smg { background-color: #2a2418; background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_mac10_png.vtex"); }
+.wp-swatch-heavy { background-color: #243028; background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_nova_png.vtex"); }
+.wp-swatch-agents { background-color: #243044; background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_professional_varg_png.vtex"); }
+.wp-swatch-music { background-color: #2a2030; background-image: url("s2r://panorama/images/econ/music_kits/valve_cs2_01_png.vtex"); }
+.wp-swatch-pins { background-color: #302a18; background-image: url("s2r://panorama/images/econ/status_icons/5yearcoin_png.vtex"); }
 
 .wp-cat-text
 {
+	width: fill-parent-flow(1.0);
 	flow-children: down;
 	vertical-align: middle;
 }
@@ -311,9 +340,11 @@
 .wp-cat-name
 {
 	color: #f4f7fb;
-	font-size: 16px;
+	font-size: 18px;
+	letter-spacing: 1px;
 }
 
+.wp-cat.is-cur .wp-cat-name,
 .wp-root.cat-loadout #wp-cat-loadout .wp-cat-name,
 .wp-root.cat-knife #wp-cat-knife .wp-cat-name,
 .wp-root.cat-gloves #wp-cat-gloves .wp-cat-name,
@@ -323,284 +354,354 @@
 .wp-root.cat-smg #wp-cat-smg .wp-cat-name,
 .wp-root.cat-heavy #wp-cat-heavy .wp-cat-name,
 .wp-root.cat-agents #wp-cat-agents .wp-cat-name,
-.wp-root.cat-music #wp-cat-music .wp-cat-name
+.wp-root.cat-music #wp-cat-music .wp-cat-name,
+.wp-root.cat-pins #wp-cat-pins .wp-cat-name
 {
 	color: #f0b93f;
 }
 
 .wp-cat-sub
 {
-	color: #c3ccd8;
-	font-size: 12px;
+	color: #b4bdca;
+	font-size: 14px;
 	margin-top: 2px;
-	width: 160px;
+	width: 100%;
+	height: 20px;
 	text-overflow: shrink;
 }
+
+/* ---------- main column ---------- */
 
 .wp-main
 {
-	width: fill-parent-flow(1);
+	width: fill-parent-flow(1.0);
 	height: 100%;
 	flow-children: down;
+	overflow: clip noclip;
 }
 
-/* ---- home tiles ------------------------------------------------------- */
-
-.wp-home
+.wp-home,
+.wp-grid
 {
-	flow-children: right-wrap;
 	width: 100%;
-}
-
-.wp-tile
-{
-	width: 144px;
-	height: 170px;
-	margin: 0px 8px 8px 0px;
-	background-color: #171e29;
-	border: 2px solid #2c3848;
-	border-radius: 8px;
+	height: fill-parent-flow(1.0);
 	flow-children: down;
-	transition-property: border, transform;
-	transition-duration: 0.12s;
 }
-
-.wp-tile:hover
-{
-	border: 2px solid #c9a15a;
-	transform: scale3d(1.03, 1.03, 1.0);
-}
-
-.wp-tile-art
-{
-	width: 100%;
-	height: 100px;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
-.wp-tile-knife
-{
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#6a2428), to(#2a181c));
-	background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_push_png.vtex");
-}
-
-.wp-tile-gloves
-{
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5a3048), to(#241820));
-	background-image: url("s2r://panorama/images/econ/weapons/base_weapons/ct_gloves_png.vtex");
-}
-
-.wp-tile-pistols
-{
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1e3a55), to(#121820));
-	background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_usp_silencer_png.vtex");
-}
-
-.wp-tile-rifles
-{
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3a2a18), to(#1a140e));
-	background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_ak47_png.vtex");
-}
-
-.wp-tile-snipers
-{
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2830), to(#101418));
-	background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_awp_png.vtex");
-}
-
-.wp-tile-smg
-{
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2a2418), to(#14120e));
-	background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_mac10_png.vtex");
-}
-
-.wp-tile-heavy
-{
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#243028), to(#101610));
-	background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_nova_png.vtex");
-}
-
-.wp-tile-agents
-{
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4a3070), to(#1c1428));
-	background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_professional_varg_png.vtex");
-}
-
-.wp-tile-music
-{
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2a2030), to(#140e18));
-	background-image: url("s2r://panorama/images/icons/equipment/musickit.vsvg");
-	background-size: 46% 46%;
-}
-
-.wp-tile-name
-{
-	color: #f4f7fb;
-	font-size: 13px;
-	horizontal-align: center;
-	margin-top: 2px;
-}
-
-.wp-tile-sub
-{
-	color: #d0d6de;
-	font-size: 12px;
-	horizontal-align: center;
-	margin-top: 4px;
-	width: 130px;
-	text-align: center;
-	text-overflow: shrink;
-}
-
-/* ---- dynamic grid: 6 x 3 ---------------------------------------------- */
 
 .wp-grid
 {
-	flow-children: right-wrap;
-	width: 100%;
+	overflow: clip scroll;
+	padding-top: 4px;
 }
 
-.wp-card
+.wp-row
 {
-	width: 144px;
-	height: 170px;
-	margin: 0px 8px 8px 0px;
-	flow-children: none;
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#18202e), color-stop(0.5, #1b2335), to(#6a2a2f));
-	border: 2px solid #2b3446;
-	border-radius: 8px;
-	transition-property: background-color, border, transform, box-shadow;
+	width: 100%;
+	flow-children: right;
+	overflow: noclip noclip;
+}
+
+/* home: two rows of five tiles. The window is always 70% of 1080 high, so the body is ~572px
+   and two 272px rows fill it top to bottom on every aspect ratio. */
+.wp-home .wp-row
+{
+	height: 272px;
+}
+
+/* ---------- home tiles ---------- */
+
+.wp-tile
+{
+	width: fill-parent-flow(1.0);
+	height: 262px;
+	margin-right: 10px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2230), to(#121821));
+	border: 2px solid #2c3848;
+	border-radius: 12px;
+	transition-property: transform, brightness, box-shadow;
 	transition-duration: 0.12s;
 	transition-timing-function: ease-out;
 }
 
-/* hover: lighter background, light border, small lift */
+.wp-tile:last-child
+{
+	margin-right: 0px;
+}
+
+.wp-tile:hover
+{
+	border: 2px solid #f0b93f;
+	brightness: 1.15;
+	box-shadow: #f0b93f30 0px 0px 14px 0px;
+}
+
+.wp-tile.is-cur
+{
+	border: 2px solid #f0b93f;
+}
+
+.wp-tile-in
+{
+	width: 100%;
+	flow-children: down;
+	vertical-align: center;
+}
+
+.wp-tile-art
+{
+	width: 120px;
+	height: 90px;
+	horizontal-align: center;
+	border-radius: 8px;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.wp-tile-name
+{
+	color: #ffffff;
+	font-size: 18px;
+	letter-spacing: 1px;
+	horizontal-align: center;
+	margin-top: 14px;
+}
+
+.wp-tile-sub
+{
+	color: #b4bdca;
+	font-size: 14px;
+	horizontal-align: center;
+	margin-top: 4px;
+	width: 92%;
+	height: 20px;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+/* ---------- item cards ---------- */
+
+.wp-card
+{
+	width: fill-parent-flow(1.0);
+	height: 196px;
+	margin: 0px 8px 10px 0px;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2230), color-stop(0.55, #1c2333), to(#262e3c));
+	border: 2px solid #2b3446;
+	border-radius: 10px;
+	transition-property: transform, brightness, box-shadow;
+	transition-duration: 0.12s;
+	transition-timing-function: ease-out;
+}
+
+.wp-card:last-child
+{
+	margin-right: 0px;
+}
+
 .wp-card:hover
 {
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#27344d), color-stop(0.5, #2a3550), to(#8a343a));
-	border: 2px solid #c9d4e6;
-	box-shadow: 0px 0px 10px 0px #8fb4ff44;
-	transform: scale3d(1.04, 1.04, 1.0);
-	z-index: 10;
+	brightness: 1.18;
 }
 
-.wp-card:active
+/* empty cell of the last row: keeps the five-column widths */
+.wp-card.wp-ghost
 {
-	transform: scale3d(0.98, 0.98, 1.0);
-}
-
-/* equipped: gold border, gold glow, gold text, badge in the corner */
-.wp-card.is-eq
-{
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3a2e14), color-stop(0.5, #2b2415), to(#5c3a1a));
-	border: 2px solid #f0b93f;
-	box-shadow: 0px 0px 14px 2px #f0b93f77;
-}
-
-.wp-card.is-eq:hover
-{
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4a3a18), color-stop(0.5, #372d17), to(#704a20));
-	border: 2px solid #ffd877;
-	box-shadow: 0px 0px 18px 3px #f0b93f99;
-	transform: scale3d(1.04, 1.04, 1.0);
-	z-index: 10;
+	opacity: 0;
 }
 
 .wp-art
 {
-	width: 128px;
+	width: 112px;
 	height: 84px;
 	horizontal-align: center;
-	vertical-align: top;
-	margin-top: 22px;
-	background-size: contain;
+	margin-top: 30px;
+	margin-bottom: 2px;
+	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
 .wp-art.wp-noart
 {
-	visibility: collapse;
+	opacity: 0;
 }
 
 .wp-bar
 {
-	width: 96px;
+	width: 84%;
 	height: 3px;
 	horizontal-align: center;
-	vertical-align: bottom;
-	margin-bottom: 50px;
-	background-color: #d8473f;
-	border-radius: 2px;
-}
-
-.wp-card.is-stock .wp-bar
-{
+	margin-top: 8px;
 	background-color: #6c7686;
-}
-
-.wp-card.is-eq .wp-bar
-{
-	background-color: #f0b93f;
+	border-radius: 2px;
 }
 
 .wp-name
 {
-	color: #f4f7fb;
-	font-size: 14px;
+	color: #ffffff;
+	font-size: 16px;
 	horizontal-align: center;
-	vertical-align: bottom;
-	margin-bottom: 26px;
+	margin-top: 8px;
 	text-align: center;
-	width: 130px;
-	height: 20px;
+	width: 92%;
+	height: 22px;
 	text-overflow: shrink;
-}
-
-.wp-card.is-eq .wp-name
-{
-	color: #f0b93f;
 }
 
 .wp-sub
 {
-	color: #d4544a;
-	font-size: 11px;
+	color: #98a2b0;
+	font-size: 13px;
 	letter-spacing: 1px;
 	horizontal-align: center;
-	vertical-align: bottom;
-	margin-bottom: 9px;
+	margin-top: 2px;
 	text-align: center;
-	width: 130px;
-	height: 16px;
+	width: 92%;
+	height: 19px;
 	text-overflow: shrink;
 	text-transform: uppercase;
 }
 
-.wp-card.is-stock .wp-sub
+/* rarity: frame, bottom tint, bar and the rarity line */
+.wp-card.rar-1 { border: 2px solid #b0c3d9a0; background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2230), color-stop(0.55, #1c2333), to(#3f4a58)); }
+.wp-card.rar-2 { border: 2px solid #5e98d9a0; background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2230), color-stop(0.55, #1c2333), to(#22405e)); }
+.wp-card.rar-3 { border: 2px solid #4b69ffa0; background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2230), color-stop(0.55, #1c2333), to(#1f2d6e)); }
+.wp-card.rar-4 { border: 2px solid #8847ffa0; background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2230), color-stop(0.55, #1c2333), to(#3a2470)); }
+.wp-card.rar-5 { border: 2px solid #d32ce6a0; background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2230), color-stop(0.55, #1c2333), to(#5a1f63)); }
+.wp-card.rar-6 { border: 2px solid #eb4b4ba0; background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2230), color-stop(0.55, #1c2333), to(#5f2428)); }
+.wp-card.rar-7 { border: 2px solid #e4ae39a0; background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2230), color-stop(0.55, #1c2333), to(#5e4618)); }
+
+.wp-card.rar-1 .wp-bar { background-color: #b0c3d9; }
+.wp-card.rar-2 .wp-bar { background-color: #5e98d9; }
+.wp-card.rar-3 .wp-bar { background-color: #4b69ff; }
+.wp-card.rar-4 .wp-bar { background-color: #8847ff; }
+.wp-card.rar-5 .wp-bar { background-color: #d32ce6; }
+.wp-card.rar-6 .wp-bar { background-color: #eb4b4b; }
+.wp-card.rar-7 .wp-bar { background-color: #e4ae39; }
+
+.wp-card.rar-1 .wp-sub { color: #c9d6e4; }
+.wp-card.rar-2 .wp-sub { color: #8db8e8; }
+.wp-card.rar-3 .wp-sub { color: #8197ff; }
+.wp-card.rar-4 .wp-sub { color: #ae85ff; }
+.wp-card.rar-5 .wp-sub { color: #e47bef; }
+.wp-card.rar-6 .wp-sub { color: #f38a8a; }
+.wp-card.rar-7 .wp-sub { color: #efc874; }
+
+.wp-card.rar-1:hover { border: 2px solid #b0c3d9; }
+.wp-card.rar-2:hover { border: 2px solid #5e98d9; }
+.wp-card.rar-3:hover { border: 2px solid #4b69ff; }
+.wp-card.rar-4:hover { border: 2px solid #8847ff; }
+.wp-card.rar-5:hover { border: 2px solid #d32ce6; }
+.wp-card.rar-6:hover { border: 2px solid #eb4b4b; }
+.wp-card.rar-7:hover { border: 2px solid #e4ae39; }
+
+.wp-card.is-stock:hover
 {
-	color: #8b95a3;
+	border: 2px solid #8a94a4;
 }
 
-.wp-card.is-eq .wp-sub
+/* equipped for the team the player stands in: the frame takes the team colour */
+.wp-root.team-t .wp-card.is-eq
 {
-	color: #e6c27a;
+	border: 2px solid #f0b93f;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3f3216), color-stop(0.55, #2b2415), to(#6a421a));
+	box-shadow: #f0b93f50 0px 0px 14px 0px;
 }
 
+.wp-root.team-ct .wp-card.is-eq
+{
+	border: 2px solid #4f9cff;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#16263f), color-stop(0.55, #15202e), to(#1a3a6a));
+	box-shadow: #4f9cff50 0px 0px 14px 0px;
+}
+
+.wp-root.team-t .wp-card.is-eq .wp-bar { background-color: #f0b93f; }
+.wp-root.team-ct .wp-card.is-eq .wp-bar { background-color: #4f9cff; }
+.wp-root.team-t .wp-card.is-eq .wp-name { color: #f0b93f; }
+.wp-root.team-ct .wp-card.is-eq .wp-name { color: #8fc0ff; }
+
+/* T / CT dots, top left: filled = this item is equipped for that team */
+.wp-dots
+{
+	ignore-parent-flow: true;
+	horizontal-align: left;
+	vertical-align: top;
+	margin: 7px;
+	flow-children: right;
+}
+
+.wp-dot
+{
+	width: 24px;
+	height: 24px;
+	margin-right: 4px;
+	border-radius: 12px;
+	border: 2px solid #4a5568;
+	background-color: #0e131bd0;
+}
+
+.wp-dot Label
+{
+	color: #6c7686;
+	font-size: 10px;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.wp-card.on-t .wp-dot-t
+{
+	border: 2px solid #f0b93f;
+	background-color: #f0b93f;
+	box-shadow: #f0b93f80 0px 0px 6px 0px;
+}
+
+.wp-card.on-t .wp-dot-t Label
+{
+	color: #1a1408;
+}
+
+.wp-card.on-ct .wp-dot-ct
+{
+	border: 2px solid #4f9cff;
+	background-color: #4f9cff;
+	box-shadow: #4f9cff80 0px 0px 6px 0px;
+}
+
+.wp-card.on-ct .wp-dot-ct Label
+{
+	color: #ffffff;
+}
+
+/* EQUIPPED badge, top right, in the team colour */
 .wp-badge
 {
 	visibility: collapse;
+	ignore-parent-flow: true;
 	horizontal-align: right;
 	vertical-align: top;
-	margin: 6px 6px 0px 0px;
-	padding: 2px 6px;
-	color: #1a1408;
+	margin: 8px;
+	padding: 3px 8px;
 	background-color: #f0b93f;
-	font-size: 10px;
+	border-radius: 4px;
+}
+
+.wp-root.team-ct .wp-badge
+{
+	background-color: #4f9cff;
+}
+
+.wp-badge Label
+{
+	color: #1a1408;
+	font-size: 11px;
 	letter-spacing: 1px;
-	border-radius: 3px;
+}
+
+.wp-root.team-ct .wp-badge Label
+{
+	color: #ffffff;
 }
 
 .wp-card.is-eq .wp-badge
@@ -608,28 +709,42 @@
 	visibility: visible;
 }
 
-/* ---- footer / pager --------------------------------------------------- */
+/* ---------- footer ---------- */
 
 .wp-foot
 {
 	width: 100%;
-	height: 48px;
+	height: 44px;
+	margin-top: 6px;
 	flow-children: right;
-	margin-top: 8px;
+	border-top: 1px solid #2a3443;
+	padding-top: 4px;
 }
 
 .wp-hint
 {
-	color: #8b95a3;
-	font-size: 15px;
+	width: fill-parent-flow(1.0);
+	color: #a3adbb;
+	font-size: 16px;
 	vertical-align: middle;
+	text-overflow: shrink;
 }
 
 .wp-pager
 {
+	visibility: collapse;
 	flow-children: right;
-	horizontal-align: right;
 	vertical-align: middle;
+}
+
+.wp-root.multi-page .wp-pager
+{
+	visibility: visible;
+}
+
+.wp-root.view-home .wp-pager
+{
+	visibility: collapse;
 }
 
 .wp-page,
@@ -640,25 +755,21 @@
 	margin-left: 6px;
 	background-color: #1c2430;
 	border: 2px solid #2b3446;
-	border-radius: 6px;
-	transition-property: background-color, border;
+	border-radius: 8px;
+	transition-property: brightness;
 	transition-duration: 0.12s;
 }
 
 .wp-page:hover,
 .wp-num:hover
 {
-	background-color: #2a3649;
 	border: 2px solid #c9a15a;
+	brightness: 1.25;
 }
 
-.wp-page Label,
-.wp-num Label
+.wp-page.wp-dim
 {
-	color: #f4f7fb;
-	font-size: 16px;
-	horizontal-align: center;
-	vertical-align: middle;
+	opacity: 0.35;
 }
 
 .wp-num.is-cur
@@ -672,54 +783,64 @@
 	color: #1a1408;
 }
 
-.wp-page.wp-dim
+.wp-page Label,
+.wp-num Label
 {
-	opacity: 0.35;
+	color: #f4f7fb;
+	font-size: 17px;
+	horizontal-align: center;
+	vertical-align: middle;
 }
 
-/* Icons from the installed CS2 client. */
-.k0 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_push_aa_fade_light_png.vtex"); }
-.k1 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_png.vtex"); }
-.k2 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_bayonet_aa_fade_light_png.vtex"); }
-.k3 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_survival_bowie_aa_fade_light_png.vtex"); }
-.k4 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_butterfly_aa_fade_light_png.vtex"); }
-.k5 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_css_aa_fade_light_png.vtex"); }
-.k6 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_falchion_aa_fade_light_png.vtex"); }
-.k7 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_flip_aa_fade_light_png.vtex"); }
-.k8 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_gut_aa_fade_light_png.vtex"); }
-.k9 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_tactical_aa_fade_light_png.vtex"); }
-.k10 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_karambit_aa_fade_light_png.vtex"); }
-.k11 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_kukri_aa_fade_light_png.vtex"); }
-.k12 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_m9_bayonet_aa_fade_light_png.vtex"); }
-.k13 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_gypsy_jackknife_aa_fade_light_png.vtex"); }
-.k14 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_outdoor_aa_fade_light_png.vtex"); }
-.k15 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_cord_aa_fade_light_png.vtex"); }
-.k16 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_skeleton_aa_fade_light_png.vtex"); }
-.k17 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_stiletto_aa_fade_light_png.vtex"); }
-.k18 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_canis_aa_fade_light_png.vtex"); }
-.k19 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_widowmaker_aa_fade_light_png.vtex"); }
-.k20 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_ursus_aa_fade_light_png.vtex"); }
-.wp-art.knife-0 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_push_aa_fade_light_png.vtex"); }
-.wp-art.knife-1 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_png.vtex"); }
-.wp-art.knife-2 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_bayonet_aa_fade_light_png.vtex"); }
-.wp-art.knife-3 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_survival_bowie_aa_fade_light_png.vtex"); }
-.wp-art.knife-4 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_butterfly_aa_fade_light_png.vtex"); }
-.wp-art.knife-5 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_css_aa_fade_light_png.vtex"); }
-.wp-art.knife-6 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_falchion_aa_fade_light_png.vtex"); }
-.wp-art.knife-7 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_flip_aa_fade_light_png.vtex"); }
-.wp-art.knife-8 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_gut_aa_fade_light_png.vtex"); }
-.wp-art.knife-9 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_tactical_aa_fade_light_png.vtex"); }
-.wp-art.knife-10 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_karambit_aa_fade_light_png.vtex"); }
-.wp-art.knife-11 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_kukri_aa_fade_light_png.vtex"); }
-.wp-art.knife-12 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_m9_bayonet_aa_fade_light_png.vtex"); }
-.wp-art.knife-13 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_gypsy_jackknife_aa_fade_light_png.vtex"); }
-.wp-art.knife-14 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_outdoor_aa_fade_light_png.vtex"); }
-.wp-art.knife-15 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_cord_aa_fade_light_png.vtex"); }
-.wp-art.knife-16 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_skeleton_aa_fade_light_png.vtex"); }
-.wp-art.knife-17 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_stiletto_aa_fade_light_png.vtex"); }
-.wp-art.knife-18 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_canis_aa_fade_light_png.vtex"); }
-.wp-art.knife-19 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_widowmaker_aa_fade_light_png.vtex"); }
-.wp-art.knife-20 { background-image: url("s2r://panorama/images/econ/default_generated/weapon_knife_ursus_aa_fade_light_png.vtex"); }
+/* ---------- default pictures of the home tiles ---------- */
+
+.wp-tile-knife { background-color: gradient(linear, 0% 0%, 0% 100%, from(#6a2428), to(#2a181c)); background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_push_png.vtex"); }
+.wp-tile-gloves { background-color: gradient(linear, 0% 0%, 0% 100%, from(#5a3048), to(#241820)); background-image: url("s2r://panorama/images/econ/weapons/base_weapons/ct_gloves_png.vtex"); }
+.wp-tile-pistols { background-color: gradient(linear, 0% 0%, 0% 100%, from(#1e3a55), to(#121820)); background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_usp_silencer_png.vtex"); }
+.wp-tile-rifles { background-color: gradient(linear, 0% 0%, 0% 100%, from(#3a2a18), to(#14100c)); background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_ak47_png.vtex"); }
+.wp-tile-snipers { background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2830), to(#101418)); background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_awp_png.vtex"); }
+.wp-tile-smg { background-color: gradient(linear, 0% 0%, 0% 100%, from(#2a2418), to(#14120e)); background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_mac10_png.vtex"); }
+.wp-tile-heavy { background-color: gradient(linear, 0% 0%, 0% 100%, from(#243028), to(#101610)); background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_nova_png.vtex"); }
+.wp-tile-agents { background-color: gradient(linear, 0% 0%, 0% 100%, from(#4a3070), to(#1c1428)); background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_professional_varg_png.vtex"); }
+.wp-tile-music { background-color: gradient(linear, 0% 0%, 0% 100%, from(#3a2050), to(#140e18)); background-image: url("s2r://panorama/images/econ/music_kits/valve_cs2_01_png.vtex"); }
+.wp-tile-pins { background-color: gradient(linear, 0% 0%, 0% 100%, from(#4a3a18), to(#18140e)); background-image: url("s2r://panorama/images/econ/status_icons/5yearcoin_png.vtex"); }
+
+
+/* ---------- default items: game pictures, and our own for "no music" and "no coin" ---------- */
+
+.gl-def-t { background-image: url("s2r://panorama/images/econ/wearables/gloves/t_defaultgloves_png.vtex"); }
+.gl-def-ct { background-image: url("s2r://panorama/images/econ/wearables/gloves/ct_defaultgloves_png.vtex"); }
+.ag-def-t { background-image: url("s2r://panorama/images/econ/characters/customplayer_t_map_based_png.vtex"); }
+.ag-def-ct { background-image: url("s2r://panorama/images/econ/characters/customplayer_ct_map_based_png.vtex"); }
+.mk-none { background-image: url("s2r://panorama/images/custom_game/pmm_music_none_png.vtex"); }
+.pn-none { background-image: url("s2r://panorama/images/custom_game/pmm_coin_none_png.vtex"); }
+
+/* ---------- knife types (vanilla models) ---------- */
+
+.knife-0 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_push_png.vtex"); }
+.knife-1 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_png.vtex"); }
+.knife-2 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_bayonet_png.vtex"); }
+.knife-3 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_survival_bowie_png.vtex"); }
+.knife-4 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_butterfly_png.vtex"); }
+.knife-5 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_css_png.vtex"); }
+.knife-6 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_falchion_png.vtex"); }
+.knife-7 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_flip_png.vtex"); }
+.knife-8 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_gut_png.vtex"); }
+.knife-9 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_tactical_png.vtex"); }
+.knife-10 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_karambit_png.vtex"); }
+.knife-11 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_kukri_png.vtex"); }
+.knife-12 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_m9_bayonet_png.vtex"); }
+.knife-13 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife_png.vtex"); }
+.knife-14 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_outdoor_png.vtex"); }
+.knife-15 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_cord_png.vtex"); }
+.knife-16 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_skeleton_png.vtex"); }
+.knife-17 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_stiletto_png.vtex"); }
+.knife-18 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_canis_png.vtex"); }
+.knife-19 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_widowmaker_png.vtex"); }
+.knife-20 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_knife_ursus_png.vtex"); }
+
+/* ---------- skins (icons.json classes) ---------- */
+
 .n0 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_diver_varianta_png.vtex"); }
 .n1 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_diver_variantb_png.vtex"); }
 .n2 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_diver_variantc_png.vtex"); }
@@ -2944,3 +3065,772 @@
 .n2221 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_ump45_png.vtex"); }
 .n2222 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_usp_silencer_png.vtex"); }
 .n2223 { background-image: url("s2r://panorama/images/econ/weapons/base_weapons/weapon_xm1014_png.vtex"); }
+
+/* ---------- agents ag-<def>, music kits mk-<id>, coins pn-<id> ---------- */
+
+.ag-5105 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_leet_variantg_png.vtex"); }
+.ag-5106 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_leet_varianth_png.vtex"); }
+.ag-5107 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_leet_varianti_png.vtex"); }
+.ag-5108 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_leet_variantf_png.vtex"); }
+.ag-5109 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_leet_variantj_png.vtex"); }
+.ag-5205 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_phoenix_varianth_png.vtex"); }
+.ag-5206 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_phoenix_variantf_png.vtex"); }
+.ag-5207 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_phoenix_variantg_png.vtex"); }
+.ag-5208 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_phoenix_varianti_png.vtex"); }
+.ag-5305 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_fbi_variantf_png.vtex"); }
+.ag-5306 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_fbi_variantg_png.vtex"); }
+.ag-5307 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_fbi_varianth_png.vtex"); }
+.ag-5308 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_fbi_variantb_png.vtex"); }
+.ag-5400 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_st6_variantk_png.vtex"); }
+.ag-5401 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_st6_variante_png.vtex"); }
+.ag-5402 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_st6_variantg_png.vtex"); }
+.ag-5403 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_st6_variantm_png.vtex"); }
+.ag-5404 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_st6_varianti_png.vtex"); }
+.ag-4619 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_st6_variantj_png.vtex"); }
+.ag-4680 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_st6_variantl_png.vtex"); }
+.ag-5405 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_st6_variantn_png.vtex"); }
+.ag-5500 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_balkan_variantf_png.vtex"); }
+.ag-5501 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_balkan_varianti_png.vtex"); }
+.ag-5502 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_balkan_variantg_png.vtex"); }
+.ag-5503 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_balkan_variantj_png.vtex"); }
+.ag-5504 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_balkan_varianth_png.vtex"); }
+.ag-4718 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_balkan_variantk_png.vtex"); }
+.ag-5505 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_balkan_variantl_png.vtex"); }
+.ag-5601 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_sas_variantf_png.vtex"); }
+.ag-5602 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_sas_variantg_png.vtex"); }
+.ag-4711 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_swat_variante_png.vtex"); }
+.ag-4712 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_swat_variantf_png.vtex"); }
+.ag-4713 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_swat_variantg_png.vtex"); }
+.ag-4714 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_swat_varianth_png.vtex"); }
+.ag-4715 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_swat_varianti_png.vtex"); }
+.ag-4716 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_swat_variantj_png.vtex"); }
+.ag-4756 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_swat_variantk_png.vtex"); }
+.ag-4726 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_professional_varf_png.vtex"); }
+.ag-4733 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_professional_varf1_png.vtex"); }
+.ag-4734 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_professional_varf2_png.vtex"); }
+.ag-4735 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_professional_varf3_png.vtex"); }
+.ag-4736 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_professional_varf4_png.vtex"); }
+.ag-4727 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_professional_varg_png.vtex"); }
+.ag-4728 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_professional_varh_png.vtex"); }
+.ag-4732 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_professional_vari_png.vtex"); }
+.ag-4730 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_professional_varj_png.vtex"); }
+.ag-4613 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_professional_varf5_png.vtex"); }
+.ag-4749 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_gendarmerie_varianta_png.vtex"); }
+.ag-4750 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_gendarmerie_variantb_png.vtex"); }
+.ag-4751 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_gendarmerie_variantc_png.vtex"); }
+.ag-4752 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_gendarmerie_variantd_png.vtex"); }
+.ag-4753 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_gendarmerie_variante_png.vtex"); }
+.ag-4757 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_diver_varianta_png.vtex"); }
+.ag-4771 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_diver_variantb_png.vtex"); }
+.ag-4772 { background-image: url("s2r://panorama/images/econ/characters/customplayer_ctm_diver_variantc_png.vtex"); }
+.ag-4773 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_jungle_raider_varianta_png.vtex"); }
+.ag-4774 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_jungle_raider_variantb_png.vtex"); }
+.ag-4775 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_jungle_raider_variantc_png.vtex"); }
+.ag-4776 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_jungle_raider_variantd_png.vtex"); }
+.ag-4777 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_jungle_raider_variante_png.vtex"); }
+.ag-4778 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_jungle_raider_variantf_png.vtex"); }
+.ag-4780 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_jungle_raider_variantb2_png.vtex"); }
+.ag-4781 { background-image: url("s2r://panorama/images/econ/characters/customplayer_tm_jungle_raider_variantf2_png.vtex"); }
+.mk-1 { background-image: url("s2r://panorama/images/econ/music_kits/valve_cs2_01_png.vtex"); }
+.mk-2 { background-image: url("s2r://panorama/images/econ/music_kits/valve_02_png.vtex"); }
+.mk-3 { background-image: url("s2r://panorama/images/econ/music_kits/danielsadowski_01_png.vtex"); }
+.mk-4 { background-image: url("s2r://panorama/images/econ/music_kits/noisia_01_png.vtex"); }
+.mk-5 { background-image: url("s2r://panorama/images/econ/music_kits/robertallaire_01_png.vtex"); }
+.mk-6 { background-image: url("s2r://panorama/images/econ/music_kits/seanmurray_01_png.vtex"); }
+.mk-7 { background-image: url("s2r://panorama/images/econ/music_kits/feedme_01_png.vtex"); }
+.mk-8 { background-image: url("s2r://panorama/images/econ/music_kits/dren_01_png.vtex"); }
+.mk-9 { background-image: url("s2r://panorama/images/econ/music_kits/austinwintory_01_png.vtex"); }
+.mk-10 { background-image: url("s2r://panorama/images/econ/music_kits/sasha_01_png.vtex"); }
+.mk-11 { background-image: url("s2r://panorama/images/econ/music_kits/skog_01_png.vtex"); }
+.mk-12 { background-image: url("s2r://panorama/images/econ/music_kits/midnightriders_01_png.vtex"); }
+.mk-13 { background-image: url("s2r://panorama/images/econ/music_kits/mattlange_01_png.vtex"); }
+.mk-14 { background-image: url("s2r://panorama/images/econ/music_kits/mateomessina_01_png.vtex"); }
+.mk-15 { background-image: url("s2r://panorama/images/econ/music_kits/hotlinemiami_01_png.vtex"); }
+.mk-16 { background-image: url("s2r://panorama/images/econ/music_kits/danielsadowski_02_png.vtex"); }
+.mk-17 { background-image: url("s2r://panorama/images/econ/music_kits/damjanmravunac_01_png.vtex"); }
+.mk-18 { background-image: url("s2r://panorama/images/econ/music_kits/proxy_01_png.vtex"); }
+.mk-19 { background-image: url("s2r://panorama/images/econ/music_kits/kitheory_01_png.vtex"); }
+.mk-20 { background-image: url("s2r://panorama/images/econ/music_kits/troelsfolmann_01_png.vtex"); }
+.mk-21 { background-image: url("s2r://panorama/images/econ/music_kits/kellybailey_01_png.vtex"); }
+.mk-22 { background-image: url("s2r://panorama/images/econ/music_kits/skog_02_png.vtex"); }
+.mk-23 { background-image: url("s2r://panorama/images/econ/music_kits/danielsadowski_03_png.vtex"); }
+.mk-24 { background-image: url("s2r://panorama/images/econ/music_kits/awolnation_01_png.vtex"); }
+.mk-25 { background-image: url("s2r://panorama/images/econ/music_kits/mordfustang_01_png.vtex"); }
+.mk-26 { background-image: url("s2r://panorama/images/econ/music_kits/michaelbross_01_png.vtex"); }
+.mk-27 { background-image: url("s2r://panorama/images/econ/music_kits/ianhultquist_01_png.vtex"); }
+.mk-28 { background-image: url("s2r://panorama/images/econ/music_kits/newbeatfund_01_png.vtex"); }
+.mk-29 { background-image: url("s2r://panorama/images/econ/music_kits/beartooth_01_png.vtex"); }
+.mk-30 { background-image: url("s2r://panorama/images/econ/music_kits/lenniemoore_01_png.vtex"); }
+.mk-31 { background-image: url("s2r://panorama/images/econ/music_kits/darude_01_png.vtex"); }
+.mk-39 { background-image: url("s2r://panorama/images/econ/music_kits/theverkkars_01_png.vtex"); }
+.mk-40 { background-image: url("s2r://panorama/images/econ/music_kits/halo_01_png.vtex"); }
+.mk-41 { background-image: url("s2r://panorama/images/econ/music_kits/scarlxrd_01_png.vtex"); }
+.mk-42 { background-image: url("s2r://panorama/images/econ/music_kits/hlalyx_01_png.vtex"); }
+.mk-50 { background-image: url("s2r://panorama/images/econ/music_kits/amontobin_01_png.vtex"); }
+.mk-51 { background-image: url("s2r://panorama/images/econ/music_kits/hades_01_png.vtex"); }
+.mk-52 { background-image: url("s2r://panorama/images/econ/music_kits/neckdeep_02_png.vtex"); }
+.mk-53 { background-image: url("s2r://panorama/images/econ/music_kits/scarlxrd_02_png.vtex"); }
+.mk-60 { background-image: url("s2r://panorama/images/econ/music_kits/bbnos_01_png.vtex"); }
+.mk-61 { background-image: url("s2r://panorama/images/econ/music_kits/theverkkars_02_png.vtex"); }
+.mk-68 { background-image: url("s2r://panorama/images/econ/music_kits/perfectworld_01_png.vtex"); }
+.mk-69 { background-image: url("s2r://panorama/images/econ/music_kits/denzelcurry_01_png.vtex"); }
+.mk-70 { background-image: url("s2r://panorama/images/econ/music_kits/valve_01_png.vtex"); }
+.mk-32 { background-image: url("s2r://panorama/images/econ/music_kits/beartooth_02_png.vtex"); }
+.mk-33 { background-image: url("s2r://panorama/images/econ/music_kits/blitzkids_01_png.vtex"); }
+.mk-34 { background-image: url("s2r://panorama/images/econ/music_kits/hundredth_01_png.vtex"); }
+.mk-35 { background-image: url("s2r://panorama/images/econ/music_kits/neckdeep_01_png.vtex"); }
+.mk-36 { background-image: url("s2r://panorama/images/econ/music_kits/roam_01_png.vtex"); }
+.mk-37 { background-image: url("s2r://panorama/images/econ/music_kits/twinatlantic_01_png.vtex"); }
+.mk-38 { background-image: url("s2r://panorama/images/econ/music_kits/skog_03_png.vtex"); }
+.mk-43 { background-image: url("s2r://panorama/images/econ/music_kits/austinwintory_02_png.vtex"); }
+.mk-44 { background-image: url("s2r://panorama/images/econ/music_kits/dren_02_png.vtex"); }
+.mk-45 { background-image: url("s2r://panorama/images/econ/music_kits/danielsadowski_04_png.vtex"); }
+.mk-46 { background-image: url("s2r://panorama/images/econ/music_kits/treeadams_benbromfield_01_png.vtex"); }
+.mk-47 { background-image: url("s2r://panorama/images/econ/music_kits/timhuling_01_png.vtex"); }
+.mk-48 { background-image: url("s2r://panorama/images/econ/music_kits/sammarshall_01_png.vtex"); }
+.mk-49 { background-image: url("s2r://panorama/images/econ/music_kits/mattlevine_01_png.vtex"); }
+.mk-54 { background-image: url("s2r://panorama/images/econ/music_kits/austinwintory_03_png.vtex"); }
+.mk-55 { background-image: url("s2r://panorama/images/econ/music_kits/chipzel_01_png.vtex"); }
+.mk-56 { background-image: url("s2r://panorama/images/econ/music_kits/freakydna_01_png.vtex"); }
+.mk-57 { background-image: url("s2r://panorama/images/econ/music_kits/jesseharlin_01_png.vtex"); }
+.mk-58 { background-image: url("s2r://panorama/images/econ/music_kits/laurashigihara_01_png.vtex"); }
+.mk-59 { background-image: url("s2r://panorama/images/econ/music_kits/sarahschachner_01_png.vtex"); }
+.mk-62 { background-image: url("s2r://panorama/images/econ/music_kits/3kliksphilip_01_png.vtex"); }
+.mk-63 { background-image: url("s2r://panorama/images/econ/music_kits/hlb_01_png.vtex"); }
+.mk-64 { background-image: url("s2r://panorama/images/econ/music_kits/juelz_01_png.vtex"); }
+.mk-65 { background-image: url("s2r://panorama/images/econ/music_kits/knock2_01_png.vtex"); }
+.mk-66 { background-image: url("s2r://panorama/images/econ/music_kits/meechydarko_01_png.vtex"); }
+.mk-67 { background-image: url("s2r://panorama/images/econ/music_kits/sullivanking_01_png.vtex"); }
+.mk-71 { background-image: url("s2r://panorama/images/econ/music_kits/dryden_01_png.vtex"); }
+.mk-72 { background-image: url("s2r://panorama/images/econ/music_kits/isoxo_01_png.vtex"); }
+.mk-73 { background-image: url("s2r://panorama/images/econ/music_kits/killscript_01_png.vtex"); }
+.mk-74 { background-image: url("s2r://panorama/images/econ/music_kits/knock2_02_png.vtex"); }
+.mk-75 { background-image: url("s2r://panorama/images/econ/music_kits/radcat_01_png.vtex"); }
+.mk-76 { background-image: url("s2r://panorama/images/econ/music_kits/twerl_01_png.vtex"); }
+.mk-78 { background-image: url("s2r://panorama/images/econ/music_kits/austinwintory_04_png.vtex"); }
+.mk-79 { background-image: url("s2r://panorama/images/econ/music_kits/benbromfield_01_png.vtex"); }
+.mk-80 { background-image: url("s2r://panorama/images/econ/music_kits/danielsadowski_05_png.vtex"); }
+.mk-81 { background-image: url("s2r://panorama/images/econ/music_kits/dren_03_png.vtex"); }
+.mk-82 { background-image: url("s2r://panorama/images/econ/music_kits/mattlevine_02_png.vtex"); }
+.mk-83 { background-image: url("s2r://panorama/images/econ/music_kits/sammarshall_02_png.vtex"); }
+.mk-84 { background-image: url("s2r://panorama/images/econ/music_kits/timhuling_02_png.vtex"); }
+.mk-85 { background-image: url("s2r://panorama/images/econ/music_kits/treeadams_01_png.vtex"); }
+.mk-86 { background-image: url("s2r://panorama/images/econ/music_kits/perfectworld_02_png.vtex"); }
+.mk-87 { background-image: url("s2r://panorama/images/econ/music_kits/adambeyer_01_png.vtex"); }
+.mk-88 { background-image: url("s2r://panorama/images/econ/music_kits/ghost_01_png.vtex"); }
+.mk-89 { background-image: url("s2r://panorama/images/econ/music_kits/health_01_png.vtex"); }
+.mk-90 { background-image: url("s2r://panorama/images/econ/music_kits/jamesandthecoldgun_01_png.vtex"); }
+.mk-91 { background-image: url("s2r://panorama/images/econ/music_kits/jonathanyoung_01_png.vtex"); }
+.mk-92 { background-image: url("s2r://panorama/images/econ/music_kits/juelz_02_png.vtex"); }
+.mk-93 { background-image: url("s2r://panorama/images/econ/music_kits/killermike_01_png.vtex"); }
+.mk-94 { background-image: url("s2r://panorama/images/econ/music_kits/pvris_01_png.vtex"); }
+.mk-95 { background-image: url("s2r://panorama/images/econ/music_kits/selectiveresponse_01_png.vtex"); }
+.mk-96 { background-image: url("s2r://panorama/images/econ/music_kits/tigercub_01_png.vtex"); }
+.mk-98 { background-image: url("s2r://panorama/images/econ/music_kits/alrt_01_png.vtex"); }
+.mk-99 { background-image: url("s2r://panorama/images/econ/music_kits/altare_01_png.vtex"); }
+.mk-100 { background-image: url("s2r://panorama/images/econ/music_kits/borne_01_png.vtex"); }
+.mk-101 { background-image: url("s2r://panorama/images/econ/music_kits/pirapus_01_png.vtex"); }
+.mk-102 { background-image: url("s2r://panorama/images/econ/music_kits/repiet_01_png.vtex"); }
+.mk-103 { background-image: url("s2r://panorama/images/econ/music_kits/shockone_01_png.vtex"); }
+.mk-104 { background-image: url("s2r://panorama/images/econ/music_kits/starjunk95_01_png.vtex"); }
+.pn-875 { background-image: url("s2r://panorama/images/econ/status_icons/dreamhack_2013_champion_png.vtex"); }
+.pn-876 { background-image: url("s2r://panorama/images/econ/status_icons/dreamhack_2013_finalist_png.vtex"); }
+.pn-877 { background-image: url("s2r://panorama/images/econ/status_icons/dreamhack_2013_semifinalist_png.vtex"); }
+.pn-878 { background-image: url("s2r://panorama/images/econ/status_icons/dreamhack_2013_quarterfinalist_png.vtex"); }
+.pn-879 { background-image: url("s2r://panorama/images/econ/status_icons/katowice_2014_champion_png.vtex"); }
+.pn-880 { background-image: url("s2r://panorama/images/econ/status_icons/katowice_2014_finalist_png.vtex"); }
+.pn-881 { background-image: url("s2r://panorama/images/econ/status_icons/katowice_2014_semifinalist_png.vtex"); }
+.pn-882 { background-image: url("s2r://panorama/images/econ/status_icons/katowice_2014_quarterfinalist_png.vtex"); }
+.pn-883 { background-image: url("s2r://panorama/images/econ/status_icons/cologne_trophy_champion_png.vtex"); }
+.pn-884 { background-image: url("s2r://panorama/images/econ/status_icons/cologne_trophy_finalist_png.vtex"); }
+.pn-885 { background-image: url("s2r://panorama/images/econ/status_icons/cologne_trophy_semifinalist_png.vtex"); }
+.pn-886 { background-image: url("s2r://panorama/images/econ/status_icons/cologne_trophy_quarterfinalist_png.vtex"); }
+.pn-887 { background-image: url("s2r://panorama/images/econ/status_icons/cologne_prediction_bronze_png.vtex"); }
+.pn-888 { background-image: url("s2r://panorama/images/econ/status_icons/cologne_prediction_silver_png.vtex"); }
+.pn-889 { background-image: url("s2r://panorama/images/econ/status_icons/cologne_prediction_gold_png.vtex"); }
+.pn-890 { background-image: url("s2r://panorama/images/econ/status_icons/dhw_2014_champion_png.vtex"); }
+.pn-891 { background-image: url("s2r://panorama/images/econ/status_icons/dhw_2014_finalist_png.vtex"); }
+.pn-892 { background-image: url("s2r://panorama/images/econ/status_icons/dhw_2014_semifinalist_png.vtex"); }
+.pn-893 { background-image: url("s2r://panorama/images/econ/status_icons/dhw_2014_quarterfinalist_png.vtex"); }
+.pn-894 { background-image: url("s2r://panorama/images/econ/status_icons/dhw14_prediction_bronze_png.vtex"); }
+.pn-895 { background-image: url("s2r://panorama/images/econ/status_icons/dhw14_prediction_silver_png.vtex"); }
+.pn-896 { background-image: url("s2r://panorama/images/econ/status_icons/dhw14_prediction_gold_png.vtex"); }
+.pn-897 { background-image: url("s2r://panorama/images/econ/status_icons/kat_2015_champion_png.vtex"); }
+.pn-898 { background-image: url("s2r://panorama/images/econ/status_icons/kat_2015_finalist_png.vtex"); }
+.pn-899 { background-image: url("s2r://panorama/images/econ/status_icons/kat_2015_semifinalist_png.vtex"); }
+.pn-900 { background-image: url("s2r://panorama/images/econ/status_icons/kat_2015_quarterfinalist_png.vtex"); }
+.pn-901 { background-image: url("s2r://panorama/images/econ/status_icons/kat_2015_prediction_bronze_png.vtex"); }
+.pn-902 { background-image: url("s2r://panorama/images/econ/status_icons/kat_2015_prediction_silver_png.vtex"); }
+.pn-903 { background-image: url("s2r://panorama/images/econ/status_icons/kat_2015_prediction_gold_png.vtex"); }
+.pn-904 { background-image: url("s2r://panorama/images/econ/status_icons/col_2015_champion_png.vtex"); }
+.pn-905 { background-image: url("s2r://panorama/images/econ/status_icons/col_2015_finalist_png.vtex"); }
+.pn-906 { background-image: url("s2r://panorama/images/econ/status_icons/col_2015_semifinalist_png.vtex"); }
+.pn-907 { background-image: url("s2r://panorama/images/econ/status_icons/col_2015_quarterfinalist_png.vtex"); }
+.pn-908 { background-image: url("s2r://panorama/images/econ/status_icons/col_2015_prediction_bronze_png.vtex"); }
+.pn-909 { background-image: url("s2r://panorama/images/econ/status_icons/col_2015_prediction_silver_png.vtex"); }
+.pn-910 { background-image: url("s2r://panorama/images/econ/status_icons/col_2015_prediction_gold_png.vtex"); }
+.pn-911 { background-image: url("s2r://panorama/images/econ/status_icons/cluj_2015_prediction_bronze_png.vtex"); }
+.pn-912 { background-image: url("s2r://panorama/images/econ/status_icons/cluj_2015_prediction_silver_png.vtex"); }
+.pn-913 { background-image: url("s2r://panorama/images/econ/status_icons/cluj_2015_prediction_gold_png.vtex"); }
+.pn-914 { background-image: url("s2r://panorama/images/econ/status_icons/cluj_2015_fantasy_bronze_png.vtex"); }
+.pn-915 { background-image: url("s2r://panorama/images/econ/status_icons/cluj_2015_fantasy_silver_png.vtex"); }
+.pn-916 { background-image: url("s2r://panorama/images/econ/status_icons/cluj_2015_fantasy_gold_png.vtex"); }
+.pn-917 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_png.vtex"); }
+.pn-918 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-919 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-920 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-921 { background-image: url("s2r://panorama/images/econ/status_icons/mlg_2016_pickem_bronze_png.vtex"); }
+.pn-922 { background-image: url("s2r://panorama/images/econ/status_icons/mlg_2016_pickem_silver_png.vtex"); }
+.pn-923 { background-image: url("s2r://panorama/images/econ/status_icons/mlg_2016_pickem_gold_png.vtex"); }
+.pn-924 { background-image: url("s2r://panorama/images/econ/status_icons/mlg_2016_fantasy_bronze_png.vtex"); }
+.pn-925 { background-image: url("s2r://panorama/images/econ/status_icons/mlg_2016_fantasy_silver_png.vtex"); }
+.pn-926 { background-image: url("s2r://panorama/images/econ/status_icons/mlg_2016_fantasy_gold_png.vtex"); }
+.pn-927 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_png.vtex"); }
+.pn-928 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-929 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-930 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-931 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_png.vtex"); }
+.pn-932 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-933 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-934 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-935 { background-image: url("s2r://panorama/images/econ/status_icons/cologne_pickem_2016_bronze_png.vtex"); }
+.pn-936 { background-image: url("s2r://panorama/images/econ/status_icons/cologne_pickem_2016_silver_png.vtex"); }
+.pn-937 { background-image: url("s2r://panorama/images/econ/status_icons/cologne_pickem_2016_gold_png.vtex"); }
+.pn-938 { background-image: url("s2r://panorama/images/econ/status_icons/cologne_fantasy_2016_bronze_png.vtex"); }
+.pn-939 { background-image: url("s2r://panorama/images/econ/status_icons/cologne_fantasy_2016_silver_png.vtex"); }
+.pn-940 { background-image: url("s2r://panorama/images/econ/status_icons/cologne_fantasy_2016_gold_png.vtex"); }
+.pn-941 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_png.vtex"); }
+.pn-942 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-943 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-944 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-945 { background-image: url("s2r://panorama/images/econ/status_icons/atlanta_pickem_2017_bronze_png.vtex"); }
+.pn-946 { background-image: url("s2r://panorama/images/econ/status_icons/atlanta_pickem_2017_silver_png.vtex"); }
+.pn-947 { background-image: url("s2r://panorama/images/econ/status_icons/atlanta_pickem_2017_gold_png.vtex"); }
+.pn-948 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_png.vtex"); }
+.pn-949 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-950 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-951 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-952 { background-image: url("s2r://panorama/images/econ/status_icons/krakow_pickem_2017_bronze_png.vtex"); }
+.pn-953 { background-image: url("s2r://panorama/images/econ/status_icons/krakow_pickem_2017_silver_png.vtex"); }
+.pn-954 { background-image: url("s2r://panorama/images/econ/status_icons/krakow_pickem_2017_gold_png.vtex"); }
+.pn-955 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_png.vtex"); }
+.pn-956 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-957 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-958 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-959 { background-image: url("s2r://panorama/images/econ/status_icons/boston_pickem_2018_bronze_png.vtex"); }
+.pn-960 { background-image: url("s2r://panorama/images/econ/status_icons/boston_pickem_2018_silver_png.vtex"); }
+.pn-961 { background-image: url("s2r://panorama/images/econ/status_icons/boston_pickem_2018_gold_png.vtex"); }
+.pn-962 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_png.vtex"); }
+.pn-963 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-964 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-965 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-966 { background-image: url("s2r://panorama/images/econ/status_icons/london_pickem_2018_bronze_png.vtex"); }
+.pn-967 { background-image: url("s2r://panorama/images/econ/status_icons/london_pickem_2018_silver_png.vtex"); }
+.pn-968 { background-image: url("s2r://panorama/images/econ/status_icons/london_pickem_2018_gold_png.vtex"); }
+.pn-971 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_png.vtex"); }
+.pn-972 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-973 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-974 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-975 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_png.vtex"); }
+.pn-976 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-977 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-978 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-979 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_png.vtex"); }
+.pn-980 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-981 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-982 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-983 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_png.vtex"); }
+.pn-984 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-985 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-986 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-988 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_png.vtex"); }
+.pn-989 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-990 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-991 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-992 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_png.vtex"); }
+.pn-993 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-994 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-995 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_majors_finalists_png.vtex"); }
+.pn-1000 { background-image: url("s2r://panorama/images/econ/status_icons/community_support_pass_png.vtex"); }
+.pn-1001 { background-image: url("s2r://panorama/images/econ/status_icons/community_support_pass_coin1_png.vtex"); }
+.pn-1002 { background-image: url("s2r://panorama/images/econ/status_icons/community_support_pass_coin2_png.vtex"); }
+.pn-1003 { background-image: url("s2r://panorama/images/econ/status_icons/community_support_pass_coin3_png.vtex"); }
+.pn-1004 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_museum_png.vtex"); }
+.pn-1005 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_downtown_png.vtex"); }
+.pn-1006 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_thunder_png.vtex"); }
+.pn-1007 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_favela_png.vtex"); }
+.pn-1008 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_motel_png.vtex"); }
+.pn-1009 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_seaside_png.vtex"); }
+.pn-1010 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_library_png.vtex"); }
+.pn-1012 { background-image: url("s2r://panorama/images/econ/status_icons/operation_bravo_pass_png.vtex"); }
+.pn-1013 { background-image: url("s2r://panorama/images/econ/status_icons/operation_bravo_bronze_png.vtex"); }
+.pn-1014 { background-image: url("s2r://panorama/images/econ/status_icons/operation_bravo_silver_png.vtex"); }
+.pn-1015 { background-image: url("s2r://panorama/images/econ/status_icons/operation_bravo_gold_png.vtex"); }
+.pn-1016 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_agency_png.vtex"); }
+.pn-1017 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_ali_png.vtex"); }
+.pn-1018 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_cache_png.vtex"); }
+.pn-1019 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_chinatown_png.vtex"); }
+.pn-1020 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_gwalior_png.vtex"); }
+.pn-1021 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_ruins_png.vtex"); }
+.pn-1022 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_siege_png.vtex"); }
+.pn-1023 { background-image: url("s2r://panorama/images/econ/status_icons/operation_phoenix_pass_png.vtex"); }
+.pn-1024 { background-image: url("s2r://panorama/images/econ/status_icons/operation_phoenix_bronze_png.vtex"); }
+.pn-1025 { background-image: url("s2r://panorama/images/econ/status_icons/operation_phoenix_silver_png.vtex"); }
+.pn-1026 { background-image: url("s2r://panorama/images/econ/status_icons/operation_phoenix_gold_png.vtex"); }
+.pn-1027 { background-image: url("s2r://panorama/images/econ/status_icons/operation_breakout_pass_png.vtex"); }
+.pn-1028 { background-image: url("s2r://panorama/images/econ/status_icons/operation_breakout_bronze_png.vtex"); }
+.pn-1029 { background-image: url("s2r://panorama/images/econ/status_icons/operation_breakout_silver_png.vtex"); }
+.pn-1030 { background-image: url("s2r://panorama/images/econ/status_icons/operation_breakout_gold_png.vtex"); }
+.pn-1031 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_castle_png.vtex"); }
+.pn-1032 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_blackgold_png.vtex"); }
+.pn-1033 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_rush_png.vtex"); }
+.pn-1034 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_mist_png.vtex"); }
+.pn-1035 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_insertion_png.vtex"); }
+.pn-1036 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_overgrown_png.vtex"); }
+.pn-1037 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_marquis_png.vtex"); }
+.pn-1038 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_workout_png.vtex"); }
+.pn-1039 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_backalley_png.vtex"); }
+.pn-1040 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_season_png.vtex"); }
+.pn-1041 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_bazaar_png.vtex"); }
+.pn-1042 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_facade_png.vtex"); }
+.pn-1043 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_log_png.vtex"); }
+.pn-1044 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_rails_png.vtex"); }
+.pn-1045 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_resort_png.vtex"); }
+.pn-1046 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_zoo_png.vtex"); }
+.pn-1047 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_santorini_png.vtex"); }
+.pn-1048 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_coast_png.vtex"); }
+.pn-1049 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_mikla_png.vtex"); }
+.pn-1050 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_royal_png.vtex"); }
+.pn-1051 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_empire_png.vtex"); }
+.pn-1052 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_tulip_png.vtex"); }
+.pn-1053 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_cruise_png.vtex"); }
+.pn-1054 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_subzero_png.vtex"); }
+.pn-1055 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_biome_png.vtex"); }
+.pn-1056 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_abbey_png.vtex"); }
+.pn-1057 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_ruby_png.vtex"); }
+.pn-1058 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_breach_png.vtex"); }
+.pn-1059 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_studio_png.vtex"); }
+.pn-1060 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_jungle_png.vtex"); }
+.pn-1061 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_anubis_png.vtex"); }
+.pn-1062 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_chlorine_png.vtex"); }
+.pn-1063 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_mutiny_png.vtex"); }
+.pn-1064 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_swamp_png.vtex"); }
+.pn-1065 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_frostbite_png.vtex"); }
+.pn-1066 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_engage_png.vtex"); }
+.pn-1067 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_apollo_png.vtex"); }
+.pn-1068 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_guard_png.vtex"); }
+.pn-1069 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_elysion_png.vtex"); }
+.pn-1070 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_grind_png.vtex"); }
+.pn-1071 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_mocha_png.vtex"); }
+.pn-1072 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_calavera_png.vtex"); }
+.pn-1073 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_pitstop_png.vtex"); }
+.pn-1074 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_basalt_png.vtex"); }
+.pn-1075 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_insertion2_png.vtex"); }
+.pn-1076 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_ravine_png.vtex"); }
+.pn-1077 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_extraction_png.vtex"); }
+.pn-1078 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_county_png.vtex"); }
+.pn-1079 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_iris_png.vtex"); }
+.pn-1080 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_climb_png.vtex"); }
+.pn-1081 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_crete_png.vtex"); }
+.pn-1082 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_hive_png.vtex"); }
+.pn-1083 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_vineyard_png.vtex"); }
+.pn-1084 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_ember_png.vtex"); }
+.pn-1085 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_tuscan_png.vtex"); }
+.pn-1086 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_prime_png.vtex"); }
+.pn-1087 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_blagai_png.vtex"); }
+.pn-1088 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_boyard_png.vtex"); }
+.pn-1089 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_chalice_png.vtex"); }
+.pn-1315 { background-image: url("s2r://panorama/images/econ/status_icons/operation_vanguard_pass_png.vtex"); }
+.pn-1316 { background-image: url("s2r://panorama/images/econ/status_icons/operation_vanguard_bronze_png.vtex"); }
+.pn-1317 { background-image: url("s2r://panorama/images/econ/status_icons/operation_vanguard_silver_png.vtex"); }
+.pn-1318 { background-image: url("s2r://panorama/images/econ/status_icons/operation_vanguard_gold_png.vtex"); }
+.pn-1326 { background-image: url("s2r://panorama/images/econ/status_icons/operation_6_pass_png.vtex"); }
+.pn-1327 { background-image: url("s2r://panorama/images/econ/status_icons/operation_6_bronze_png.vtex"); }
+.pn-1328 { background-image: url("s2r://panorama/images/econ/status_icons/operation_6_silver_png.vtex"); }
+.pn-1329 { background-image: url("s2r://panorama/images/econ/status_icons/operation_6_gold_png.vtex"); }
+.pn-1331 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2015_png.vtex"); }
+.pn-1332 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2015_2_png.vtex"); }
+.pn-1335 { background-image: url("s2r://panorama/images/econ/status_icons/operation_7_pass_png.vtex"); }
+.pn-1336 { background-image: url("s2r://panorama/images/econ/status_icons/operation_7_bronze_png.vtex"); }
+.pn-1337 { background-image: url("s2r://panorama/images/econ/status_icons/operation_7_silver_png.vtex"); }
+.pn-1338 { background-image: url("s2r://panorama/images/econ/status_icons/operation_7_gold_png.vtex"); }
+.pn-1339 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2016_lvl1_png.vtex"); }
+.pn-1340 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2016_lvl2_png.vtex"); }
+.pn-1341 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2016_lvl3_png.vtex"); }
+.pn-1342 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2016_lvl4_png.vtex"); }
+.pn-1343 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2016_lvl5_png.vtex"); }
+.pn-1344 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2016_lvl6_png.vtex"); }
+.pn-1352 { background-image: url("s2r://panorama/images/econ/status_icons/operation_8_pass_png.vtex"); }
+.pn-1357 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2017_lvl1_png.vtex"); }
+.pn-1358 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2017_lvl2_png.vtex"); }
+.pn-1359 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2017_lvl3_png.vtex"); }
+.pn-1360 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2017_lvl4_png.vtex"); }
+.pn-1361 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2017_lvl5_png.vtex"); }
+.pn-1362 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2017_lvl6_png.vtex"); }
+.pn-1363 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2017_lvl7_png.vtex"); }
+.pn-1367 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2018_lvl1_png.vtex"); }
+.pn-1368 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2018_lvl2_png.vtex"); }
+.pn-1369 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2018_lvl3_png.vtex"); }
+.pn-1370 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2018_lvl4_png.vtex"); }
+.pn-1371 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2018_lvl5_png.vtex"); }
+.pn-1372 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2018_lvl6_png.vtex"); }
+.pn-1376 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2019_lvl1_png.vtex"); }
+.pn-1377 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2019_lvl2_png.vtex"); }
+.pn-1378 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2019_lvl3_png.vtex"); }
+.pn-1379 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2019_lvl4_png.vtex"); }
+.pn-1380 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2019_lvl5_png.vtex"); }
+.pn-1381 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2019_lvl6_png.vtex"); }
+.pn-4353 { background-image: url("s2r://panorama/images/econ/status_icons/operation_8_bronze_png.vtex"); }
+.pn-4354 { background-image: url("s2r://panorama/images/econ/status_icons/operation_8_silver_png.vtex"); }
+.pn-4355 { background-image: url("s2r://panorama/images/econ/status_icons/operation_8_gold_png.vtex"); }
+.pn-4356 { background-image: url("s2r://panorama/images/econ/status_icons/operation_8_platinum_png.vtex"); }
+.pn-4549 { background-image: url("s2r://panorama/images/econ/status_icons/operation_9_pass_png.vtex"); }
+.pn-4550 { background-image: url("s2r://panorama/images/econ/status_icons/operation_9_bronze_png.vtex"); }
+.pn-4551 { background-image: url("s2r://panorama/images/econ/status_icons/operation_9_silver_png.vtex"); }
+.pn-4552 { background-image: url("s2r://panorama/images/econ/status_icons/operation_9_gold_png.vtex"); }
+.pn-4553 { background-image: url("s2r://panorama/images/econ/status_icons/operation_9_platinum_png.vtex"); }
+.pn-4554 { background-image: url("s2r://panorama/images/econ/status_icons/katowice_pickem_2019_pass_png.vtex"); }
+.pn-4555 { background-image: url("s2r://panorama/images/econ/status_icons/katowice_pickem_2019_bronze_png.vtex"); }
+.pn-4556 { background-image: url("s2r://panorama/images/econ/status_icons/katowice_pickem_2019_silver_png.vtex"); }
+.pn-4557 { background-image: url("s2r://panorama/images/econ/status_icons/katowice_pickem_2019_gold_png.vtex"); }
+.pn-4558 { background-image: url("s2r://panorama/images/econ/status_icons/katowice_pickem_2019_crystal_png.vtex"); }
+.pn-4622 { background-image: url("s2r://panorama/images/econ/status_icons/starladder_pickem_2019_pass_png.vtex"); }
+.pn-4623 { background-image: url("s2r://panorama/images/econ/status_icons/starladder_pickem_2019_bronze_png.vtex"); }
+.pn-4624 { background-image: url("s2r://panorama/images/econ/status_icons/starladder_pickem_2019_silver_png.vtex"); }
+.pn-4625 { background-image: url("s2r://panorama/images/econ/status_icons/starladder_pickem_2019_gold_png.vtex"); }
+.pn-4626 { background-image: url("s2r://panorama/images/econ/status_icons/starladder_pickem_2019_crystal_png.vtex"); }
+.pn-4627 { background-image: url("s2r://panorama/images/econ/status_icons/starladder_pickem_2019_pass_pack_png.vtex"); }
+.pn-4628 { background-image: url("s2r://panorama/images/econ/status_icons/starladder_pickem_2019_pass_charge_png.vtex"); }
+.pn-4674 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2020_lvl1_png.vtex"); }
+.pn-4675 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2020_lvl2_png.vtex"); }
+.pn-4676 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2020_lvl3_png.vtex"); }
+.pn-4677 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2020_lvl4_png.vtex"); }
+.pn-4678 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2020_lvl5_png.vtex"); }
+.pn-4679 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2020_lvl6_png.vtex"); }
+.pn-4682 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_alyx_04_png.vtex"); }
+.pn-4683 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_alyx_07_png.vtex"); }
+.pn-4684 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_alyx_09_png.vtex"); }
+.pn-4685 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_alyx_05_png.vtex"); }
+.pn-4686 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_alyx_12_png.vtex"); }
+.pn-4687 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_alyx_01_png.vtex"); }
+.pn-4688 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_alyx_02_png.vtex"); }
+.pn-4689 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_alyx_03_png.vtex"); }
+.pn-4690 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_alyx_06_png.vtex"); }
+.pn-4691 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_alyx_08_png.vtex"); }
+.pn-4692 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_alyx_11_png.vtex"); }
+.pn-4699 { background-image: url("s2r://panorama/images/econ/status_icons/operation_10_pass_png.vtex"); }
+.pn-4700 { background-image: url("s2r://panorama/images/econ/status_icons/operation_10_bronze_png.vtex"); }
+.pn-4701 { background-image: url("s2r://panorama/images/econ/status_icons/operation_10_silver_png.vtex"); }
+.pn-4702 { background-image: url("s2r://panorama/images/econ/status_icons/operation_10_gold_png.vtex"); }
+.pn-4703 { background-image: url("s2r://panorama/images/econ/status_icons/operation_10_platinum_png.vtex"); }
+.pn-4737 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2021_lvl1_png.vtex"); }
+.pn-4738 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2021_lvl2_png.vtex"); }
+.pn-4739 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2021_lvl3_png.vtex"); }
+.pn-4740 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2021_lvl4_png.vtex"); }
+.pn-4741 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2021_lvl5_png.vtex"); }
+.pn-4742 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2021_lvl6_png.vtex"); }
+.pn-4758 { background-image: url("s2r://panorama/images/econ/status_icons/operation_11_pass_png.vtex"); }
+.pn-4759 { background-image: url("s2r://panorama/images/econ/status_icons/operation_11_bronze_png.vtex"); }
+.pn-4760 { background-image: url("s2r://panorama/images/econ/status_icons/operation_11_silver_png.vtex"); }
+.pn-4761 { background-image: url("s2r://panorama/images/econ/status_icons/operation_11_gold_png.vtex"); }
+.pn-4762 { background-image: url("s2r://panorama/images/econ/status_icons/operation_11_platinum_png.vtex"); }
+.pn-4796 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2021_pass_png.vtex"); }
+.pn-4797 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2021_bronze_png.vtex"); }
+.pn-4798 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2021_silver_png.vtex"); }
+.pn-4799 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2021_gold_png.vtex"); }
+.pn-4800 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2021_crystal_png.vtex"); }
+.pn-4801 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2021_pass_pack_png.vtex"); }
+.pn-4802 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2021_pass_charge_png.vtex"); }
+.pn-4819 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2022_lvl1_png.vtex"); }
+.pn-4820 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2022_lvl2_png.vtex"); }
+.pn-4821 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2022_lvl3_png.vtex"); }
+.pn-4822 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2022_lvl4_png.vtex"); }
+.pn-4823 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2022_lvl5_png.vtex"); }
+.pn-4824 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2022_lvl6_png.vtex"); }
+.pn-4825 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2022_pass_png.vtex"); }
+.pn-4826 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2022_bronze_png.vtex"); }
+.pn-4827 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2022_silver_png.vtex"); }
+.pn-4828 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2022_gold_png.vtex"); }
+.pn-4829 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2022_crystal_png.vtex"); }
+.pn-4830 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2022_pass_pack_png.vtex"); }
+.pn-4831 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2022_pass_charge_png.vtex"); }
+.pn-4850 { background-image: url("s2r://panorama/images/econ/status_icons/iem_pickem_2022_pass_png.vtex"); }
+.pn-4851 { background-image: url("s2r://panorama/images/econ/status_icons/iem_pickem_2022_bronze_png.vtex"); }
+.pn-4852 { background-image: url("s2r://panorama/images/econ/status_icons/iem_pickem_2022_silver_png.vtex"); }
+.pn-4853 { background-image: url("s2r://panorama/images/econ/status_icons/iem_pickem_2022_gold_png.vtex"); }
+.pn-4854 { background-image: url("s2r://panorama/images/econ/status_icons/iem_pickem_2022_crystal_png.vtex"); }
+.pn-4855 { background-image: url("s2r://panorama/images/econ/status_icons/iem_pickem_2022_pass_pack_png.vtex"); }
+.pn-4856 { background-image: url("s2r://panorama/images/econ/status_icons/iem_pickem_2022_pass_charge_png.vtex"); }
+.pn-4873 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2023_lvl1_png.vtex"); }
+.pn-4874 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2023_lvl2_png.vtex"); }
+.pn-4875 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2023_lvl3_png.vtex"); }
+.pn-4876 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2023_lvl4_png.vtex"); }
+.pn-4877 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2023_lvl5_png.vtex"); }
+.pn-4878 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2023_lvl6_png.vtex"); }
+.pn-4883 { background-image: url("s2r://panorama/images/econ/status_icons/blast_pickem_2023_pass_png.vtex"); }
+.pn-4884 { background-image: url("s2r://panorama/images/econ/status_icons/blast_pickem_2023_bronze_png.vtex"); }
+.pn-4885 { background-image: url("s2r://panorama/images/econ/status_icons/blast_pickem_2023_silver_png.vtex"); }
+.pn-4886 { background-image: url("s2r://panorama/images/econ/status_icons/blast_pickem_2023_gold_png.vtex"); }
+.pn-4887 { background-image: url("s2r://panorama/images/econ/status_icons/blast_pickem_2023_crystal_png.vtex"); }
+.pn-4888 { background-image: url("s2r://panorama/images/econ/status_icons/blast_pickem_2023_pass_pack_png.vtex"); }
+.pn-4889 { background-image: url("s2r://panorama/images/econ/status_icons/blast_pickem_2023_pass_charge_png.vtex"); }
+.pn-4906 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2024_lvl1_png.vtex"); }
+.pn-4907 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2024_lvl2_png.vtex"); }
+.pn-4908 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2024_lvl3_png.vtex"); }
+.pn-4909 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2024_lvl4_png.vtex"); }
+.pn-4910 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2024_lvl5_png.vtex"); }
+.pn-4911 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2024_lvl6_png.vtex"); }
+.pn-4916 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2024_pass_png.vtex"); }
+.pn-4917 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2024_bronze_png.vtex"); }
+.pn-4918 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2024_silver_png.vtex"); }
+.pn-4919 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2024_gold_png.vtex"); }
+.pn-4920 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2024_crystal_png.vtex"); }
+.pn-4921 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2024_pass_pack_png.vtex"); }
+.pn-4922 { background-image: url("s2r://panorama/images/econ/status_icons/pgl_pickem_2024_pass_charge_png.vtex"); }
+.pn-4933 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_cs2_champions_png.vtex"); }
+.pn-4934 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_cs2_finalists_png.vtex"); }
+.pn-4935 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_cs2_finalists_png.vtex"); }
+.pn-4936 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_cs2_finalists_png.vtex"); }
+.pn-4941 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_thera_png.vtex"); }
+.pn-4942 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_mills_png.vtex"); }
+.pn-4943 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_assembly_png.vtex"); }
+.pn-4944 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_memento_png.vtex"); }
+.pn-4945 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_poolday_png.vtex"); }
+.pn-4951 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2025_lvl1_png.vtex"); }
+.pn-4952 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2025_lvl2_png.vtex"); }
+.pn-4953 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2025_lvl3_png.vtex"); }
+.pn-4954 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2025_lvl4_png.vtex"); }
+.pn-4955 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2025_lvl5_png.vtex"); }
+.pn-4956 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2025_lvl6_png.vtex"); }
+.pn-4957 { background-image: url("s2r://panorama/images/econ/status_icons/pw_pickem_2024_pass_png.vtex"); }
+.pn-4958 { background-image: url("s2r://panorama/images/econ/status_icons/pw_pickem_2024_bronze_png.vtex"); }
+.pn-4959 { background-image: url("s2r://panorama/images/econ/status_icons/pw_pickem_2024_silver_png.vtex"); }
+.pn-4960 { background-image: url("s2r://panorama/images/econ/status_icons/pw_pickem_2024_gold_png.vtex"); }
+.pn-4961 { background-image: url("s2r://panorama/images/econ/status_icons/pw_pickem_2024_crystal_png.vtex"); }
+.pn-4962 { background-image: url("s2r://panorama/images/econ/status_icons/pw_pickem_2024_pass_pack_png.vtex"); }
+.pn-4963 { background-image: url("s2r://panorama/images/econ/status_icons/pw_pickem_2024_pass_charge_png.vtex"); }
+.pn-4974 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_cs2_champions_png.vtex"); }
+.pn-4975 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_cs2_finalists_png.vtex"); }
+.pn-4976 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_cs2_finalists_png.vtex"); }
+.pn-4977 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_cs2_finalists_png.vtex"); }
+.pn-4982 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_whistle_png.vtex"); }
+.pn-4983 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_palais_png.vtex"); }
+.pn-4984 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_edin_png.vtex"); }
+.pn-4985 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_basaltcs2_png.vtex"); }
+.pn-4986 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_1_coin_eg_png.vtex"); }
+.pn-4987 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_eg_png.vtex"); }
+.pn-4988 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_11_png.vtex"); }
+.pn-4989 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_12_png.vtex"); }
+.pn-4990 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_13_png.vtex"); }
+.pn-4991 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_14_png.vtex"); }
+.pn-4992 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_15_png.vtex"); }
+.pn-4993 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_21_png.vtex"); }
+.pn-4994 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_22_png.vtex"); }
+.pn-4995 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_23_png.vtex"); }
+.pn-4996 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_24_png.vtex"); }
+.pn-4997 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_25_png.vtex"); }
+.pn-4998 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_31_png.vtex"); }
+.pn-4999 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_32_png.vtex"); }
+.pn-5000 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_33_png.vtex"); }
+.pn-5001 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_34_png.vtex"); }
+.pn-5002 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_35_png.vtex"); }
+.pn-5003 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_41_png.vtex"); }
+.pn-5004 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_42_png.vtex"); }
+.pn-5005 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_43_png.vtex"); }
+.pn-5006 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_44_png.vtex"); }
+.pn-5007 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_45_png.vtex"); }
+.pn-5008 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_51_png.vtex"); }
+.pn-5009 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_52_png.vtex"); }
+.pn-5010 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_53_png.vtex"); }
+.pn-5011 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_54_png.vtex"); }
+.pn-5012 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_55_png.vtex"); }
+.pn-5013 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_61_png.vtex"); }
+.pn-5014 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_62_png.vtex"); }
+.pn-5015 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_63_png.vtex"); }
+.pn-5016 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_64_png.vtex"); }
+.pn-5017 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_65_png.vtex"); }
+.pn-5018 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_71_png.vtex"); }
+.pn-5019 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_72_png.vtex"); }
+.pn-5020 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_73_png.vtex"); }
+.pn-5021 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_74_png.vtex"); }
+.pn-5022 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_2_coin_75_png.vtex"); }
+.pn-5110 { background-image: url("s2r://panorama/images/econ/tournaments/aus2025/aus2025_pass_png.vtex"); }
+.pn-5111 { background-image: url("s2r://panorama/images/econ/tournaments/aus2025/aus2025_coin_bronze_png.vtex"); }
+.pn-5112 { background-image: url("s2r://panorama/images/econ/tournaments/aus2025/aus2025_coin_silver_png.vtex"); }
+.pn-5113 { background-image: url("s2r://panorama/images/econ/tournaments/aus2025/aus2025_coin_gold_png.vtex"); }
+.pn-5114 { background-image: url("s2r://panorama/images/econ/tournaments/aus2025/aus2025_coin_crystal_png.vtex"); }
+.pn-5115 { background-image: url("s2r://panorama/images/econ/tournaments/aus2025/aus2025_pass_pack_png.vtex"); }
+.pn-5116 { background-image: url("s2r://panorama/images/econ/tournaments/aus2025/aus2025_pass_charge_png.vtex"); }
+.pn-5127 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_cs2_champions_png.vtex"); }
+.pn-5128 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_cs2_finalists_png.vtex"); }
+.pn-5129 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_cs2_finalists_png.vtex"); }
+.pn-5130 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_cs2_finalists_png.vtex"); }
+.pn-5135 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_agencycs2_png.vtex"); }
+.pn-5136 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_jura_png.vtex"); }
+.pn-5137 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_grail_png.vtex"); }
+.pn-5138 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_dogtown_png.vtex"); }
+.pn-5139 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_brewery_png.vtex"); }
+.pn-5140 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_eg_png.vtex"); }
+.pn-5141 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_11_png.vtex"); }
+.pn-5142 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_12_png.vtex"); }
+.pn-5143 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_13_png.vtex"); }
+.pn-5144 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_14_png.vtex"); }
+.pn-5145 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_15_png.vtex"); }
+.pn-5146 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_21_png.vtex"); }
+.pn-5147 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_22_png.vtex"); }
+.pn-5148 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_23_png.vtex"); }
+.pn-5149 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_24_png.vtex"); }
+.pn-5150 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_25_png.vtex"); }
+.pn-5151 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_31_png.vtex"); }
+.pn-5152 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_32_png.vtex"); }
+.pn-5153 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_33_png.vtex"); }
+.pn-5154 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_34_png.vtex"); }
+.pn-5155 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_35_png.vtex"); }
+.pn-5156 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_41_png.vtex"); }
+.pn-5157 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_42_png.vtex"); }
+.pn-5158 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_43_png.vtex"); }
+.pn-5159 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_44_png.vtex"); }
+.pn-5160 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_45_png.vtex"); }
+.pn-5161 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_51_png.vtex"); }
+.pn-5162 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_52_png.vtex"); }
+.pn-5163 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_53_png.vtex"); }
+.pn-5164 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_54_png.vtex"); }
+.pn-5165 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_55_png.vtex"); }
+.pn-5166 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_61_png.vtex"); }
+.pn-5167 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_62_png.vtex"); }
+.pn-5168 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_63_png.vtex"); }
+.pn-5169 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_64_png.vtex"); }
+.pn-5170 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_65_png.vtex"); }
+.pn-5171 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_71_png.vtex"); }
+.pn-5172 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_72_png.vtex"); }
+.pn-5173 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_73_png.vtex"); }
+.pn-5174 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_74_png.vtex"); }
+.pn-5175 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_3_coin_75_png.vtex"); }
+.pn-5177 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_golden_png.vtex"); }
+.pn-5178 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_rooftop_png.vtex"); }
+.pn-5179 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_palacio_png.vtex"); }
+.pn-5209 { background-image: url("s2r://panorama/images/econ/tournaments/bud2025/bud2025_pass_png.vtex"); }
+.pn-5210 { background-image: url("s2r://panorama/images/econ/tournaments/bud2025/bud2025_coin_bronze_png.vtex"); }
+.pn-5211 { background-image: url("s2r://panorama/images/econ/tournaments/bud2025/bud2025_coin_silver_png.vtex"); }
+.pn-5212 { background-image: url("s2r://panorama/images/econ/tournaments/bud2025/bud2025_coin_gold_png.vtex"); }
+.pn-5213 { background-image: url("s2r://panorama/images/econ/tournaments/bud2025/bud2025_coin_crystal_png.vtex"); }
+.pn-5214 { background-image: url("s2r://panorama/images/econ/tournaments/bud2025/bud2025_pass_pack_png.vtex"); }
+.pn-5226 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_cs2_champions_png.vtex"); }
+.pn-5227 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_cs2_finalists_png.vtex"); }
+.pn-5228 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_cs2_finalists_png.vtex"); }
+.pn-5229 { background-image: url("s2r://panorama/images/econ/status_icons/trophy_cs2_finalists_png.vtex"); }
+.pn-5234 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_eg_png.vtex"); }
+.pn-5235 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_11_png.vtex"); }
+.pn-5236 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_12_png.vtex"); }
+.pn-5237 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_13_png.vtex"); }
+.pn-5238 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_14_png.vtex"); }
+.pn-5239 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_15_png.vtex"); }
+.pn-5240 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_21_png.vtex"); }
+.pn-5241 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_22_png.vtex"); }
+.pn-5242 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_23_png.vtex"); }
+.pn-5243 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_24_png.vtex"); }
+.pn-5244 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_25_png.vtex"); }
+.pn-5245 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_31_png.vtex"); }
+.pn-5246 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_32_png.vtex"); }
+.pn-5247 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_33_png.vtex"); }
+.pn-5248 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_34_png.vtex"); }
+.pn-5249 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_35_png.vtex"); }
+.pn-5250 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_41_png.vtex"); }
+.pn-5251 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_42_png.vtex"); }
+.pn-5252 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_43_png.vtex"); }
+.pn-5253 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_44_png.vtex"); }
+.pn-5254 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_45_png.vtex"); }
+.pn-5255 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_51_png.vtex"); }
+.pn-5256 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_52_png.vtex"); }
+.pn-5257 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_53_png.vtex"); }
+.pn-5258 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_54_png.vtex"); }
+.pn-5259 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_55_png.vtex"); }
+.pn-5260 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_61_png.vtex"); }
+.pn-5261 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_62_png.vtex"); }
+.pn-5262 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_63_png.vtex"); }
+.pn-5263 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_64_png.vtex"); }
+.pn-5264 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_65_png.vtex"); }
+.pn-5265 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_71_png.vtex"); }
+.pn-5266 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_72_png.vtex"); }
+.pn-5267 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_73_png.vtex"); }
+.pn-5268 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_74_png.vtex"); }
+.pn-5269 { background-image: url("s2r://panorama/images/econ/premier_seasons/premier_season_4_coin_75_png.vtex"); }
+.pn-5270 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2026_lvl1_png.vtex"); }
+.pn-5271 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2026_lvl2_png.vtex"); }
+.pn-5272 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2026_lvl3_png.vtex"); }
+.pn-5273 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2026_lvl4_png.vtex"); }
+.pn-5274 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2026_lvl5_png.vtex"); }
+.pn-5275 { background-image: url("s2r://panorama/images/econ/status_icons/service_medal_2026_lvl6_png.vtex"); }
+.pn-5276 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_warden_png.vtex"); }
+.pn-5277 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_stronghold_png.vtex"); }
+.pn-5278 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_alpine_png.vtex"); }
+.pn-5279 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_poseidon_png.vtex"); }
+.pn-5280 { background-image: url("s2r://panorama/images/econ/status_icons/maptoken_sanctum_png.vtex"); }
+.pn-6001 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_dust2_png.vtex"); }
+.pn-6002 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_guardianelite_png.vtex"); }
+.pn-6003 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_mirage_png.vtex"); }
+.pn-6004 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_inferno_png.vtex"); }
+.pn-6005 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_italy_png.vtex"); }
+.pn-6006 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_victory_png.vtex"); }
+.pn-6007 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_militia_png.vtex"); }
+.pn-6008 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_nuke_png.vtex"); }
+.pn-6009 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_train_png.vtex"); }
+.pn-6010 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_guardian_png.vtex"); }
+.pn-6011 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_tactics_png.vtex"); }
+.pn-6012 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_guardian_2_png.vtex"); }
+.pn-6013 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_bravo_png.vtex"); }
+.pn-6014 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_baggage_png.vtex"); }
+.pn-6015 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_phoenix_png.vtex"); }
+.pn-6016 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_office_png.vtex"); }
+.pn-6017 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_cobblestone_png.vtex"); }
+.pn-6018 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_overpass_png.vtex"); }
+.pn-6019 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_bloodhound_png.vtex"); }
+.pn-6020 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_cache_png.vtex"); }
+.pn-6021 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_valeria_png.vtex"); }
+.pn-6022 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_chroma_png.vtex"); }
+.pn-6023 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_guardian_3_png.vtex"); }
+.pn-6024 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_canals_png.vtex"); }
+.pn-6025 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_welcome_to_the_clutch_png.vtex"); }
+.pn-6026 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_death_sentence_png.vtex"); }
+.pn-6027 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_inferno_2_png.vtex"); }
+.pn-6028 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_wildfire_png.vtex"); }
+.pn-6029 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_easy_peasy_png.vtex"); }
+.pn-6030 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_aces_high_png.vtex"); }
+.pn-6031 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_hydra_png.vtex"); }
+.pn-6032 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_howl_png.vtex"); }
+.pn-6033 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_brigadier_general_png.vtex"); }
+.pn-6034 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_alyx_10_png.vtex"); }
+.pn-6101 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_dust2_png.vtex"); }
+.pn-6102 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_guardianelite_png.vtex"); }
+.pn-6103 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_mirage_png.vtex"); }
+.pn-6104 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_inferno_png.vtex"); }
+.pn-6105 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_italy_png.vtex"); }
+.pn-6106 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_victory_png.vtex"); }
+.pn-6107 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_militia_png.vtex"); }
+.pn-6108 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_nuke_png.vtex"); }
+.pn-6109 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_train_png.vtex"); }
+.pn-6110 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_guardian_png.vtex"); }
+.pn-6111 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_tactics_png.vtex"); }
+.pn-6112 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_guardian_2_png.vtex"); }
+.pn-6113 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_bravo_png.vtex"); }
+.pn-6114 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_baggage_png.vtex"); }
+.pn-6115 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_phoenix_png.vtex"); }
+.pn-6116 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_office_png.vtex"); }
+.pn-6117 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_cobblestone_png.vtex"); }
+.pn-6118 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_overpass_png.vtex"); }
+.pn-6119 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_bloodhound_png.vtex"); }
+.pn-6120 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_cache_png.vtex"); }
+.pn-6121 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_valeria_png.vtex"); }
+.pn-6122 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_chroma_png.vtex"); }
+.pn-6123 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_guardian_3_png.vtex"); }
+.pn-6124 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_canals_png.vtex"); }
+.pn-6125 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_welcome_to_the_clutch_png.vtex"); }
+.pn-6126 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_death_sentence_png.vtex"); }
+.pn-6127 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_inferno_2_png.vtex"); }
+.pn-6128 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_wildfire_png.vtex"); }
+.pn-6129 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_easy_peasy_png.vtex"); }
+.pn-6130 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_aces_high_png.vtex"); }
+.pn-6131 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_hydra_png.vtex"); }
+.pn-6132 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_howl_png.vtex"); }
+.pn-6133 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_brigadier_general_png.vtex"); }
+.pn-6134 { background-image: url("s2r://panorama/images/econ/status_icons/collectible_pin_alyx_10_png.vtex"); }

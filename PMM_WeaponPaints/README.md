@@ -1,12 +1,10 @@
 # PanoramaMenuManager_WeaponPaints
 
-Вы можете ознакомиться с более подробной информацией на сайте: https://genesis-cs.space/menuconstructor/index.html
+Проект: `PMM_WeaponPaints`. Полное имя модуля: `PanoramaMenuManager_WeaponPaints`.
 
-Инструкция по сборке и установке — в [README репозитория](../README.md). Ниже заметки по окну.
+`!pws` открывает главное окно (Loadout) только за T или CT. Разделы: Knife, Gloves (8 типов), Pistols, Rifles, Snipers, SMG, Heavy, Agents (свой список CS2), Music, Coins (`!pins`). Клик по карточке вызывает callback WeaponPaints.
 
-Проект: `PMM_WeaponPaints`. Полное имя модуля: `PanoramaMenuManager_WeaponPaints`. **Beta**, возможны баги. Дизайн панорамы вдохновлён [EliteGames.Ro](https://elitegames.ro).
-
-`!pws` открывает главное окно (Loadout). Слева Loadout, Knife, Gloves, Pistols и Agents. Knife, Gloves, Pistols и Agents вызывают `!knife`, `!gloves`, `!skins` и `!agents`. Клик по карточке вызывает callback WeaponPaints.
+Версия 0.1.0: язык `"Language": "ru"|"en"` в конфиге, рамки редкости, цвет команды у экипированного, кружки T/CT, сетка 5 в ряд, окно 65% × 70%. Данные редкостей, агентов, музыки и значков — `pmm_items.json` рядом с DLL. Полный список изменений — `../CHANGELOG.txt`.
 
 ## Как это работает (v0.1.0)
 
@@ -18,7 +16,7 @@
 * Кнопка BACK из подменю скинов возвращает в список, из которого оно открыто.
 * Состояние «что выбрано» хранится в памяти плагина на время сессии игрока.
 
-## Триггеры (v0.1.1, сборка 0.0.3)
+## Триггеры (v0.1.1, сборка 0.0.4)
 
 Свой вид окна рисуется на сайте CSCreatePanorama (`menumanager/create/index.html?preset=weaponpaints`).
 Сайт отдаёт ZIP: `wp.xml`, `wp.css`, `wp_layout.css` (клиент) и `wp_triggers.json` (сервер).

@@ -8,6 +8,7 @@
         <AssemblyName>PMM_WeaponPaints</AssemblyName>
         <RootNamespace>PMM_WeaponPaints</RootNamespace>
         <Product>PanoramaMenuManager_WeaponPaints</Product>
+        <Version>0.1.0</Version>
         <WarningLevel>0</WarningLevel>
     </PropertyGroup>
 
@@ -22,6 +23,8 @@
     <ItemGroup>
         <None Update="panorama\**\*.*" CopyToOutputDirectory="PreserveNewest"/>
         <None Update="icons.json" CopyToOutputDirectory="PreserveNewest"/>
+        <None Update="pmm_items.json" CopyToOutputDirectory="PreserveNewest"/>
+        <None Update="wp_triggers*.json" CopyToOutputDirectory="PreserveNewest"/>
     </ItemGroup>
 
 </Project>

@@ -1,0 +1,14 @@
+  Определение проектов для восстановления...
+  Все проекты обновлены для восстановления.
+  MenuManagerApi -> C:\ServerCS\Create\MenuManagerCS2-main\MenuManagerApi\bin\Release\net10.0\MenuManagerApi.dll
+C:\ServerCS\Create\PMM_WeaponPaints-0.1.0\PMM_WeaponPaints\Wptest.cs(32,3): warning CS8604: Возможно, аргумент-ссылка, допускающий значение NULL, для параметра "customHud" в "CCSCustomHudLayoutExtensions.extension(CCSCustomHudLayout)". [C:\ServerCS\Create\PMM_WeaponPaints-0.1.0\PMM_WeaponPaints\PMM_WeaponPaints.csproj]
+  PMM_WeaponPaints -> C:\ServerCS\Create\PMM_WeaponPaints-0.1.0\PMM_WeaponPaints\bin\Release\net10.0\PMM_WeaponPaints.dll
+
+Сборка успешно завершена.
+
+C:\ServerCS\Create\PMM_WeaponPaints-0.1.0\PMM_WeaponPaints\Wptest.cs(32,3): warning CS8604: Возможно, аргумент-ссылка, допускающий значение NULL, для параметра "customHud" в "CCSCustomHudLayoutExtensions.extension(CCSCustomHudLayout)". [C:\ServerCS\Create\PMM_WeaponPaints-0.1.0\PMM_WeaponPaints\PMM_WeaponPaints.csproj]
+    Предупреждений: 1
+    Ошибок: 0
+
+Прошло времени 00:00:03.33
+exit 0 
