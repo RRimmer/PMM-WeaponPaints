@@ -2,6 +2,8 @@
 
 <h2><a href="https://genesis-cs.space/menuconstructor/index.html">>>>Более подробная информация на сайте<<<</a></h2>
 
+![PMM WeaponPaints locker](PMMWPPreview.png)
+
 Panorama locker by **Rimmer** for [WeaponPaints](https://github.com/Nereziel/cs2-WeaponPaints). It draws the WeaponPaints menus as a card grid on mouse panorama. A click still runs the original WeaponPaints option.
 
 **Beta.** Bugs are possible. The panorama design is inspired by [EliteGames.Ro](https://elitegames.ro).
